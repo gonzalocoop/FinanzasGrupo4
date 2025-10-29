@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @OpenAPIDefinition(
-        info = @Info(title = "PortalTuFinanza", version = "1.0", description = "Bienvenido al backend de Grupo 4")
-
+        info = @Info(title = "PortalTuFinanza", version = "1.0", description = "Bienvenido al backend de Grupo 4"),
+        security = @SecurityRequirement(name = "bearerAuth")
 )
 @SecurityScheme(
         name = "bearerAuth",
