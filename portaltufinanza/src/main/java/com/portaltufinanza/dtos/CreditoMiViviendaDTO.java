@@ -23,7 +23,7 @@ public class CreditoMiViviendaDTO {
     private int n_numero_periodos;
     private BigDecimal tem_requerido;
     private BigDecimal tea;
-    private BigDecimal tna;
+    private BigDecimal tcea;
     private String tipo_gracia;
     private int duracion_gracia_meses;
     private int numero_cuotas;
@@ -32,7 +32,6 @@ public class CreditoMiViviendaDTO {
     private BigDecimal van;
     private BigDecimal tir;
     private Propiedad propiedad;
-    private Moneda moneda;
     private Usuarios usuario;
     private PrecioCorrespondiente preciocorrespondiente;
 
@@ -124,12 +123,12 @@ public class CreditoMiViviendaDTO {
         this.tea = tea;
     }
 
-    public BigDecimal getTna() {
-        return tna;
+    public BigDecimal getTcea() {
+        return tcea;
     }
 
-    public void setTna(BigDecimal tna) {
-        this.tna = tna;
+    public void setTcea(BigDecimal tcea) {
+        this.tcea = tcea;
     }
 
     public String getTipo_gracia() {
@@ -186,14 +185,6 @@ public class CreditoMiViviendaDTO {
 
     public void setPropiedad(Propiedad propiedad) {
         this.propiedad = propiedad;
-    }
-
-    public Moneda getMoneda() {
-        return moneda;
-    }
-
-    public void setMoneda(Moneda moneda) {
-        this.moneda = moneda;
     }
 
     public Usuarios getUsuario() {
