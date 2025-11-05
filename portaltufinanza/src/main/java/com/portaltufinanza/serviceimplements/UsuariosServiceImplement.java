@@ -38,4 +38,14 @@ public class UsuariosServiceImplement implements IUsuariosService {
     public Usuarios listId(int id) {
         return uR.findById(id).orElse(new Usuarios());
     }
+
+    @Override
+    public List<String[]> PropiedadesFinanciadasPorUsuario(Integer id_usuario) {
+        return uR.PropiedadesFinanciadasPorUsuario(id_usuario);
+    }
+
+    @Override
+    public List<String[]> CronogramadePagosPorUsuario(Integer id_usuario) {
+        return uR.CronogramadePagosPorUsuario(id_usuario);
+    }
 }

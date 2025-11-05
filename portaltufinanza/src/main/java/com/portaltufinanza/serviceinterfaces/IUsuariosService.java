@@ -10,4 +10,8 @@ public interface IUsuariosService {
     public void delete(int id);
     public void update(Usuarios usuario);
     public Usuarios listId(int id);
+
+    //queries
+    public List<String[]> PropiedadesFinanciadasPorUsuario(Integer id_usuario);
+    public List<String[]> CronogramadePagosPorUsuario(Integer id_usuario);
 }

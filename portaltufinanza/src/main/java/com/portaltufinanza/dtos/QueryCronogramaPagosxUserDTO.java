@@ -1,14 +1,12 @@
 package com.portaltufinanza.dtos;
 
 import com.portaltufinanza.entities.CreditoMiVivienda;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class CronogramaPagosDTO {
+public class QueryCronogramaPagosxUserDTO {
+    private String nombre;
     private int id_cronograma;
     private int numero_cuota;
     private LocalDate fecha_cuota;
@@ -18,7 +16,15 @@ public class CronogramaPagosDTO {
     private BigDecimal seguro_desgravamen;
     private BigDecimal seguro_bien;
     private BigDecimal saldo_restante;
-    private CreditoMiVivienda credito;
+    private int idCredito;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public int getId_cronograma() {
         return id_cronograma;
@@ -92,11 +98,11 @@ public class CronogramaPagosDTO {
         this.saldo_restante = saldo_restante;
     }
 
-    public CreditoMiVivienda getCredito() {
-        return credito;
+    public int getIdCredito() {
+        return idCredito;
     }
 
-    public void setCredito(CreditoMiVivienda credito) {
-        this.credito = credito;
+    public void setIdCredito(int idCredito) {
+        this.idCredito = idCredito;
     }
 }
