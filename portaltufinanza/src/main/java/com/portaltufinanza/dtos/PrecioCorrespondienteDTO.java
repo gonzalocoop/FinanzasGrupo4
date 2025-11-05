@@ -1,6 +1,7 @@
 package com.portaltufinanza.dtos;
 
 import com.portaltufinanza.entities.BonoBBP;
+import com.portaltufinanza.entities.Moneda;
 import com.portaltufinanza.entities.Propiedad;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
@@ -14,6 +15,7 @@ public class PrecioCorrespondienteDTO {
     private BigDecimal precio_calculado;
     private BonoBBP bono;
     private Propiedad propiedad;
+    private Moneda moneda;
 
     public int getId_precio_correspondiente() {
         return id_precio_correspondiente;
@@ -53,5 +55,13 @@ public class PrecioCorrespondienteDTO {
 
     public void setPropiedad(Propiedad propiedad) {
         this.propiedad = propiedad;
+    }
+
+    public Moneda getMoneda() {
+        return moneda;
+    }
+
+    public void setMoneda(Moneda moneda) {
+        this.moneda = moneda;
     }
 }

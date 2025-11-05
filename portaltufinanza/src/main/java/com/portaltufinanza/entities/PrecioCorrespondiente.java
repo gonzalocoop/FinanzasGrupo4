@@ -20,16 +20,20 @@ public class PrecioCorrespondiente {
     @ManyToOne
     @JoinColumn(name= "id_propiedad")
     private Propiedad propiedad;
+    @ManyToOne
+    @JoinColumn(name= "id_moneda")
+    private Moneda moneda;
 
     public PrecioCorrespondiente() {
     }
 
-    public PrecioCorrespondiente(int id_precio_correspondiente, BigDecimal cuota_inicial, BigDecimal precio_calculado, BonoBBP bono, Propiedad propiedad) {
+    public PrecioCorrespondiente(int id_precio_correspondiente, BigDecimal cuota_inicial, BigDecimal precio_calculado, BonoBBP bono, Propiedad propiedad, Moneda moneda) {
         this.id_precio_correspondiente = id_precio_correspondiente;
         this.cuota_inicial = cuota_inicial;
         this.precio_calculado = precio_calculado;
         this.bono = bono;
         this.propiedad = propiedad;
+        this.moneda = moneda;
     }
 
     public int getId_precio_correspondiente() {
@@ -70,5 +74,13 @@ public class PrecioCorrespondiente {
 
     public void setPropiedad(Propiedad propiedad) {
         this.propiedad = propiedad;
+    }
+
+    public Moneda getMoneda() {
+        return moneda;
+    }
+
+    public void setMoneda(Moneda moneda) {
+        this.moneda = moneda;
     }
 }
