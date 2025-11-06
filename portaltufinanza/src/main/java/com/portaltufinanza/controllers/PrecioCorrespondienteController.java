@@ -1,10 +1,13 @@
 package com.portaltufinanza.controllers;
 
 import com.portaltufinanza.dtos.PrecioCorrespondienteDTO;
+import com.portaltufinanza.dtos.PropiedadDTO;
 import com.portaltufinanza.entities.PrecioCorrespondiente;
 import com.portaltufinanza.serviceinterfaces.IPrecioCorrespondienteService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,5 +57,19 @@ public class PrecioCorrespondienteController {
         ModelMapper m=new ModelMapper();
         PrecioCorrespondienteDTO dto=m.map(pcS.listId(id),PrecioCorrespondienteDTO.class);
         return dto;
+    }
+
+    @GetMapping("/preciocorrespondientesegundireccion")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
+    public List<PrecioCorrespondienteDTO> precioSegunDireccionPropiedad(@RequestParam String direccion) {
+        return pcS.precioSegunDireccionPropiedad(direccion).stream().map(x->{
+            ModelMapper m= new ModelMapper();
+            return m.map(x, PrecioCorrespondienteDTO.class);
+        }).collect(Collectors.toList());
+    }
+    @PostMapping("/generarpreciocorrespondiente")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
+    public void registrarPrecioCorrespondiente(@RequestParam int idPropiedad, @RequestParam int idMoneda) {
+        pcS.registrarPrecioCorrespondiente(idPropiedad, idMoneda);
     }
 }

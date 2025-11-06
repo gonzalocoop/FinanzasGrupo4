@@ -39,4 +39,14 @@ public class PrecioCorrespondienteServiceImplement implements IPrecioCorrespondi
     public PrecioCorrespondiente listId(int id) {
         return pcR.findById(id).orElse(new PrecioCorrespondiente());
     }
+
+    @Override
+    public List<PrecioCorrespondiente> precioSegunDireccionPropiedad(String direccion) {
+        return pcR.precioSegunDireccionPropiedad(direccion);
+    }
+
+    @Override
+    public void registrarPrecioCorrespondiente(int id_propiedad, int id_moneda) {
+        pcR.registrarPrecioCorrespondiente(id_propiedad, id_moneda);
+    }
 }
