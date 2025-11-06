@@ -61,7 +61,8 @@ public class CreditoMiViviendaController {
 
     @PostMapping("/generarcreditovacio")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
-    public void registrarCreditoMiVivienda(@RequestParam LocalDate fechaInicio,
+    public void registrarCreditoMiVivienda(@RequestParam BigDecimal cok,
+                                           @RequestParam LocalDate fechaInicio,
                                            @RequestParam String tipoTasa,
                                            @RequestParam BigDecimal tasaInteres,
                                            @RequestParam String periodicidadTasa,
@@ -71,6 +72,13 @@ public class CreditoMiViviendaController {
                                            @RequestParam String tipoCapitalizacion,
                                            @RequestParam int idPrecioCorrespondiente,
                                            @RequestParam int idUsuario) {
-        cmvS.registrarCreditoMiVivienda(fechaInicio,  tipoTasa,  tasaInteres,  periodicidadTasa,  numeroCuotas,  tipoGracia,  duracionGraciaMeses,  tipoCapitalizacion,  idPrecioCorrespondiente,  idUsuario);
+        cmvS.registrarCreditoMiVivienda(cok,fechaInicio,  tipoTasa,  tasaInteres,  periodicidadTasa,  numeroCuotas,  tipoGracia,  duracionGraciaMeses,  tipoCapitalizacion,  idPrecioCorrespondiente,  idUsuario);
+    }
+
+    @PostMapping("/generartem")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
+    public void calcularYActualizarTEM(
+                                           @RequestParam int id_credito) {
+        cmvS.calcularYActualizarTEM(id_credito);
     }
 }

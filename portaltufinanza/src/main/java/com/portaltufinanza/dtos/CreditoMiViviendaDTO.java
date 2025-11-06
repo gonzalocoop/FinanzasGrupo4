@@ -19,8 +19,8 @@ public class CreditoMiViviendaDTO {
     private BigDecimal tasa_interes;
     private String peridiocidad_tasa;
     private String tipo_capitalizacion;
-    private int m_numero_capitalizaciones;
-    private int n_numero_periodos;
+    private BigDecimal m_numero_capitalizaciones;
+    private BigDecimal n_numero_periodos;
     private BigDecimal tem_requerido;
     private BigDecimal tea;
     private BigDecimal tcea;
@@ -29,6 +29,7 @@ public class CreditoMiViviendaDTO {
     private int numero_cuotas;
     private BigDecimal cuota_inicial;
     private BigDecimal saldo_inicial;
+    private BigDecimal cok;
     private BigDecimal van;
     private BigDecimal tir;
     private Propiedad propiedad;
@@ -91,19 +92,19 @@ public class CreditoMiViviendaDTO {
         this.tipo_capitalizacion = tipo_capitalizacion;
     }
 
-    public int getM_numero_capitalizaciones() {
+    public BigDecimal getM_numero_capitalizaciones() {
         return m_numero_capitalizaciones;
     }
 
-    public void setM_numero_capitalizaciones(int m_numero_capitalizaciones) {
+    public void setM_numero_capitalizaciones(BigDecimal m_numero_capitalizaciones) {
         this.m_numero_capitalizaciones = m_numero_capitalizaciones;
     }
 
-    public int getN_numero_periodos() {
+    public BigDecimal getN_numero_periodos() {
         return n_numero_periodos;
     }
 
-    public void setN_numero_periodos(int n_numero_periodos) {
+    public void setN_numero_periodos(BigDecimal n_numero_periodos) {
         this.n_numero_periodos = n_numero_periodos;
     }
 
@@ -209,5 +210,13 @@ public class CreditoMiViviendaDTO {
 
     public void setCuota_inicial(BigDecimal cuota_inicial) {
         this.cuota_inicial = cuota_inicial;
+    }
+
+    public BigDecimal getCok() {
+        return cok;
+    }
+
+    public void setCok(BigDecimal cok) {
+        this.cok = cok;
     }
 }

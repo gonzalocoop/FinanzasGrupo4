@@ -18,12 +18,12 @@ public interface ICreditoMiViviendaRepository extends JpaRepository<CreditoMiViv
     @Modifying
     @Query(
             value = "INSERT INTO credito_mi_vivienda ( " +
-                    "cuota_inicial, duracion_gracia_meses, fecha_fin, fecha_inicio, m_numero_capitalizaciones, " +
+                    "cok,cuota_inicial, duracion_gracia_meses, fecha_fin, fecha_inicio, m_numero_capitalizaciones, " +
                     "n_numero_periodos, numero_cuotas, peridiocidad_tasa, saldo_inicial, tasa_interes, tcea, tea, " +
                     "tem_requerido, tipo_capitalizacion, tipo_gracia, tipo_tasa, tir, van, " +
                     "id_precio_correspondiente, id_propiedad, id_usuario) " +
                     "SELECT " +
-                    "pc.cuota_inicial, :duracion_gracia_meses, '2099-12-31', :fecha_inicio, 0, " +
+                    ":cok, pc.cuota_inicial, :duracion_gracia_meses, '2099-12-31', :fecha_inicio, 0, " +
                     "0, :numero_cuotas, :peridiocidad_tasa, pc.precio_calculado, :tasa_interes, 0, 0, " +
                     "0, NULLIF(:tipo_capitalizacion, 'Nulo'), :tipo_gracia, :tipo_tasa, 0, 0, " +
                     ":id_precio_correspondiente, pc.id_propiedad, :id_usuario " + // <-- pc.id_propiedad usado aquí
@@ -32,6 +32,7 @@ public interface ICreditoMiViviendaRepository extends JpaRepository<CreditoMiViv
             nativeQuery = true
     )
     void registrarCreditoMiVivienda(
+            @Param("cok") BigDecimal cok,
             @Param("fecha_inicio") LocalDate fechaInicio,
             @Param("tipo_tasa") String tipoTasa,
             @Param("tasa_interes") BigDecimal tasaInteres,
@@ -45,5 +46,61 @@ public interface ICreditoMiViviendaRepository extends JpaRepository<CreditoMiViv
     );
 
 
+    @Transactional
+    @Modifying
+    @Query(
+            nativeQuery = true,
+            value = "UPDATE credito_mi_vivienda AS cmv SET " +
 
+                    // CÁLCULO M_NUMERO_CAPITALIZACIONES
+                    "m_numero_capitalizaciones = CAST(CASE " +
+                    "WHEN cmv.tipo_tasa = 'Nominal' THEN " +
+                    "CASE " +
+                    "WHEN cmv.peridiocidad_tasa = 'Mensual' THEN CASE WHEN cmv.tipo_capitalizacion = 'Diaria' THEN 30.0 WHEN cmv.tipo_capitalizacion = 'Mensual' THEN 1.0 ELSE 30.0/360.0 END " +
+                    "WHEN cmv.peridiocidad_tasa = 'Anual' THEN CASE WHEN cmv.tipo_capitalizacion = 'Diaria' THEN 360.0/1.0 WHEN cmv.tipo_capitalizacion = 'Mensual' THEN 360.0/30.0 ELSE 360.0/360.0 END " +
+                    "ELSE CASE WHEN cmv.tipo_capitalizacion = 'Diaria' THEN 1.0/1.0 WHEN cmv.tipo_capitalizacion = 'Mensual' THEN 1.0/30.0 ELSE 1.0/360.0 END " +
+                    "END " +
+                    "ELSE NULL " +
+                    "END AS NUMERIC), " + //CAST a NUMERIC añadido, si no lo pongo no funciona, no me preguntes por que
+
+                    // CÁLCULO N_NUMERO_PERIODOS
+                    "n_numero_periodos = CAST(CASE " +
+                    "WHEN cmv.tipo_tasa = 'Nominal' THEN " +
+                    "CASE " +
+                    "WHEN cmv.peridiocidad_tasa = 'Mensual' THEN CASE WHEN cmv.tipo_capitalizacion = 'Diaria' THEN 30.0 WHEN cmv.tipo_capitalizacion = 'Mensual' THEN 1.0 ELSE 30.0/360.0 END " +
+                    "WHEN cmv.peridiocidad_tasa = 'Anual' THEN CASE WHEN cmv.tipo_capitalizacion = 'Diaria' THEN 30.0/1.0 WHEN cmv.tipo_capitalizacion = 'Mensual' THEN 30.0/30.0 ELSE 30.0/360.0 END " +
+                    "ELSE CASE WHEN cmv.tipo_capitalizacion = 'Diaria' THEN 30.0/1.0 WHEN cmv.tipo_capitalizacion = 'Mensual' THEN 30.0/30.0 ELSE 30.0/360.0 END " +
+                    "END " +
+                    "ELSE NULL " +
+                    "END AS NUMERIC), " + // CAST a NUMERIC añadido
+
+                    // CÁLCULO TEM_REQUERIDO
+                    "tem_requerido = CAST(CASE " +
+                    "WHEN cmv.tipo_tasa = 'Nominal' THEN " +
+                    "(POW( (1.0 + (cmv.tasa_interes / 100.0) / " +
+                    "CASE " +
+                    "WHEN cmv.peridiocidad_tasa = 'Mensual' THEN CASE WHEN cmv.tipo_capitalizacion = 'Diaria' THEN 30.0 WHEN cmv.tipo_capitalizacion = 'Mensual' THEN 1.0 ELSE 30.0/360.0 END " +
+                    "WHEN cmv.peridiocidad_tasa = 'Anual' THEN CASE WHEN cmv.tipo_capitalizacion = 'Diaria' THEN 360.0/1.0 WHEN cmv.tipo_capitalizacion = 'Mensual' THEN 360.0/30.0 ELSE 360.0/360.0 END " +
+                    "ELSE CASE WHEN cmv.tipo_capitalizacion = 'Diaria' THEN 1.0/1.0 WHEN cmv.tipo_capitalizacion = 'Mensual' THEN 1.0/30.0 ELSE 1.0/360.0 END " +
+                    "END " +
+                    "), " +
+                    "CASE " +
+                    "WHEN cmv.peridiocidad_tasa = 'Mensual' THEN CASE WHEN cmv.tipo_capitalizacion = 'Diaria' THEN 30.0 WHEN cmv.tipo_capitalizacion = 'Mensual' THEN 1.0 ELSE 30.0/360.0 END " +
+                    "WHEN cmv.peridiocidad_tasa = 'Anual' THEN CASE WHEN cmv.tipo_capitalizacion = 'Diaria' THEN 30.0/1.0 WHEN cmv.tipo_capitalizacion = 'Mensual' THEN 30.0/30.0 ELSE 30.0/360.0 END " +
+                    "ELSE CASE WHEN cmv.tipo_capitalizacion = 'Diaria' THEN 30.0/1.0 WHEN cmv.tipo_capitalizacion = 'Mensual' THEN 30.0/30.0 ELSE 30.0/360.0 END " +
+                    "END " +
+                    ") - 1.0)" +
+                    "ELSE " +
+                    "CASE " +
+                    "WHEN cmv.peridiocidad_tasa = 'Mensual' THEN cmv.tasa_interes / 100.0 " +
+                    "WHEN cmv.peridiocidad_tasa = 'Anual' THEN POW( (1.0 + (cmv.tasa_interes / 100.0)), (1.0/12.0) ) - 1.0 " +
+                    "ELSE POW( (1.0 + (cmv.tasa_interes / 100.0)), (30.0) ) - 1.0 " +
+                    "END " +
+                    "END AS NUMERIC) " +
+
+                    "WHERE cmv.id_credito = :id_credito"
+    )
+    void calcularYActualizarTEM(
+            @Param("id_credito") Integer id_credito
+    );
 }

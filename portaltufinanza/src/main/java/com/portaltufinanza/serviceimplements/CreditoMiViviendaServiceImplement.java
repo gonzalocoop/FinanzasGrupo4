@@ -45,9 +45,14 @@ public class CreditoMiViviendaServiceImplement implements ICreditoMiViviendaServ
     }
 
     @Override
-    public void registrarCreditoMiVivienda(LocalDate fechaInicio, String tipoTasa, BigDecimal tasaInteres, String periodicidadTasa, int numeroCuotas, String tipoGracia, int duracionGraciaMeses, String tipoCapitalizacion, int idPrecioCorrespondiente, int idUsuario) {
-        cmvR.registrarCreditoMiVivienda( fechaInicio,  tipoTasa,  tasaInteres,  periodicidadTasa,  numeroCuotas,  tipoGracia,  duracionGraciaMeses,  tipoCapitalizacion,  idPrecioCorrespondiente,  idUsuario);
+    public void registrarCreditoMiVivienda(BigDecimal cok, LocalDate fechaInicio, String tipoTasa, BigDecimal tasaInteres, String periodicidadTasa, int numeroCuotas, String tipoGracia, int duracionGraciaMeses, String tipoCapitalizacion, int idPrecioCorrespondiente, int idUsuario) {
+        cmvR.registrarCreditoMiVivienda(cok, fechaInicio,  tipoTasa,  tasaInteres,  periodicidadTasa,  numeroCuotas,  tipoGracia,  duracionGraciaMeses,  tipoCapitalizacion,  idPrecioCorrespondiente,  idUsuario);
         }
+
+    @Override
+    public void calcularYActualizarTEM(int id_credito) {
+        cmvR.calcularYActualizarTEM(id_credito);
+    }
 
 
 }

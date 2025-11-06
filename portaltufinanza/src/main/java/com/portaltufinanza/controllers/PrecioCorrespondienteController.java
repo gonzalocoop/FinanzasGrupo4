@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,7 +70,7 @@ public class PrecioCorrespondienteController {
     }
     @PostMapping("/generarpreciocorrespondiente")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
-    public void registrarPrecioCorrespondiente(@RequestParam int idPropiedad, @RequestParam int idMoneda) {
-        pcS.registrarPrecioCorrespondiente(idPropiedad, idMoneda);
+    public void registrarPrecioCorrespondiente(@RequestParam BigDecimal costos_notariales, @RequestParam BigDecimal registros_publicos, @RequestParam BigDecimal costos_transaccion,@RequestParam int idPropiedad, @RequestParam int idMoneda) {
+        pcS.registrarPrecioCorrespondiente(costos_notariales,registros_publicos,costos_transaccion,idPropiedad, idMoneda);
     }
 }

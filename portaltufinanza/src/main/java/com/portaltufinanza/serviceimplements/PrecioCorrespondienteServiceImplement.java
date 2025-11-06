@@ -7,6 +7,7 @@ import com.portaltufinanza.serviceinterfaces.IPrecioCorrespondienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -46,7 +47,7 @@ public class PrecioCorrespondienteServiceImplement implements IPrecioCorrespondi
     }
 
     @Override
-    public void registrarPrecioCorrespondiente(int id_propiedad, int id_moneda) {
-        pcR.registrarPrecioCorrespondiente(id_propiedad, id_moneda);
+    public void registrarPrecioCorrespondiente(BigDecimal costos_notariales, BigDecimal registros_publicos, BigDecimal costos_transaccion, int id_propiedad, int id_moneda) {
+        pcR.registrarPrecioCorrespondiente(costos_notariales,registros_publicos,costos_transaccion, id_propiedad, id_moneda);
     }
 }

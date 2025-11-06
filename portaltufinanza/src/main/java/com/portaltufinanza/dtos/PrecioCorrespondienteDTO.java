@@ -13,6 +13,9 @@ public class PrecioCorrespondienteDTO {
     private int id_precio_correspondiente;
     private BigDecimal cuota_inicial;
     private BigDecimal precio_calculado;
+    private BigDecimal costos_notariales;
+    private BigDecimal registros_publicos;
+    private BigDecimal costos_transaccion;
     private BonoBBP bono;
     private Propiedad propiedad;
     private Moneda moneda;
@@ -63,5 +66,29 @@ public class PrecioCorrespondienteDTO {
 
     public void setMoneda(Moneda moneda) {
         this.moneda = moneda;
+    }
+
+    public BigDecimal getCostos_notariales() {
+        return costos_notariales;
+    }
+
+    public void setCostos_notariales(BigDecimal costos_notariales) {
+        this.costos_notariales = costos_notariales;
+    }
+
+    public BigDecimal getRegistros_publicos() {
+        return registros_publicos;
+    }
+
+    public void setRegistros_publicos(BigDecimal registros_publicos) {
+        this.registros_publicos = registros_publicos;
+    }
+
+    public BigDecimal getCostos_transaccion() {
+        return costos_transaccion;
+    }
+
+    public void setCostos_transaccion(BigDecimal costos_transaccion) {
+        this.costos_transaccion = costos_transaccion;
     }
 }

@@ -14,6 +14,7 @@ public interface ICreditoMiViviendaService {
     public void update(CreditoMiVivienda credito);
     public CreditoMiVivienda listId(int id);
     public void registrarCreditoMiVivienda(
+            BigDecimal cok,
             LocalDate fechaInicio,
             String tipoTasa,
             BigDecimal tasaInteres,
@@ -25,4 +26,5 @@ public interface ICreditoMiViviendaService {
             int idPrecioCorrespondiente,
             int idUsuario
     );
+    public void calcularYActualizarTEM(int id_credito);
 }

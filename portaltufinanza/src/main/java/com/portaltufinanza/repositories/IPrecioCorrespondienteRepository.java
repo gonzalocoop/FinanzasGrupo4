@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -26,13 +27,17 @@ public interface IPrecioCorrespondienteRepository extends JpaRepository<PrecioCo
     @Modifying
     @Query(
             // SQL Nativo para insertar una nueva fila
-            value = "INSERT INTO precio_correspondiente (cuota_inicial, precio_calculado, id_bono, id_moneda, id_propiedad) " +
+            value = "INSERT INTO precio_correspondiente (costos_notariales,registros_publicos,costos_transaccion,cuota_inicial, precio_calculado, id_bono, id_moneda, id_propiedad) " +
                     "SELECT " +
+                    // 0. costos iniciales extra
+                    ":costos_notariales, " +
+                    ":registros_publicos, " +
+                    ":costos_transaccion, " +
                     // 1. cuota_inicial = 0.075 * precio_propiedad
                     "p.precio_propiedad * 0.075, " +
 
                     // 2. precio_calculado = precio_propiedad - cuota_inicial
-                    "p.precio_propiedad - (p.precio_propiedad * 0.075), " +
+                    "p.precio_propiedad - (p.precio_propiedad * 0.075)+ :costos_notariales + :registros_publicos + :costos_transaccion, " +
 
                     // 3. id_bono: Lógica condicional (CASE WHEN) basada en precio_propiedad
                     "CASE " +
@@ -55,6 +60,9 @@ public interface IPrecioCorrespondienteRepository extends JpaRepository<PrecioCo
 
             nativeQuery = true
     )
-    public void registrarPrecioCorrespondiente(@Param("id_propiedad") Integer id_propiedad, @Param("id_moneda") Integer id_moneda);
+    public void registrarPrecioCorrespondiente(@Param("costos_notariales") BigDecimal costos_notariales,
+                                               @Param("registros_publicos") BigDecimal registros_publicos,
+                                               @Param("costos_transaccion") BigDecimal costos_transaccion,
+            @Param("id_propiedad") Integer id_propiedad, @Param("id_moneda") Integer id_moneda);
 
 }
