@@ -48,4 +48,9 @@ public class UsuariosServiceImplement implements IUsuariosService {
     public List<String[]> CronogramadePagosPorUsuario(Integer id_usuario) {
         return uR.CronogramadePagosPorUsuario(id_usuario);
     }
+
+    @Override
+    public List<String[]> PrecioCorrespondientePorPropiedadPorUsuario(Integer id_usuario) {
+        return uR.PrecioCorrespondientePorPropiedadPorUsuario(id_usuario);
+    }
 }

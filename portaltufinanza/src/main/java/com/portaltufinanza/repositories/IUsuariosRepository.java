@@ -25,4 +25,17 @@ public interface IUsuariosRepository extends JpaRepository<Usuarios,Integer> {
             "JOIN cronograma_pagos   cr ON cr.id_credito  = c.id_credito\n" +
             "WHERE u.id_usuario = :id_usuario;", nativeQuery = true)
     public List<String[]> CronogramadePagosPorUsuario(@Param("id_usuario")Integer id_usuario);
+
+    @Query(value = "SELECT u.nombre_cliente, pre.cuota_inicial, pre.precio_calculado, pre.costos_notariales, pre.registros_publicos, pre.costos_transaccion, \n" +
+            "bn.monto_bono, pro.precio_propiedad, mon.nombre_moneda\n" +
+            "FROM usuarios u\n" +
+            "JOIN credito_mi_vivienda c ON c.id_usuario = u.id_usuario\n" +
+            "JOIN precio_correspondiente pre ON pre.id_precio_correspondiente = c.id_precio_correspondiente\n" +
+            "JOIN propiedad pro ON pro.id_propiedad = pre.id_propiedad \n" +
+            "JOIN bonobbp bn ON bn.id_bono = pre.id_bono\n" +
+            "JOIN moneda mon ON mon.id_moneda = pre.id_moneda\n" +
+            "WHERE u.id_usuario = :id_usuario", nativeQuery = true)
+    public List<String[]> PrecioCorrespondientePorPropiedadPorUsuario(@Param("id_usuario")Integer id_usuario);
+
+
 }

@@ -1,6 +1,7 @@
 package com.portaltufinanza.controllers;
 
 import com.portaltufinanza.dtos.QueryCronogramaPagosxUserDTO;
+import com.portaltufinanza.dtos.QueryPrecioCorrespondientePorPropiedadyUsuario;
 import com.portaltufinanza.dtos.QueryPropiedadxUserDTO;
 import com.portaltufinanza.dtos.UsuariosDTO;
 import com.portaltufinanza.entities.Usuarios;
@@ -103,6 +104,27 @@ public class UsuariosController {
             dto.setSeguro_bien(new BigDecimal(columna[8].toString()));
             dto.setSeguro_desgravamen(new BigDecimal(columna[9].toString()));
             dto.setIdCredito(Integer.parseInt(columna[10]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
+    @GetMapping("/list/PrecioCorrespondientePorPropiedadPorUsuario")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'USUARIO')")
+    public List<QueryPrecioCorrespondientePorPropiedadyUsuario> PrecioCorrespondientePorPropiedadPorUsuario(@RequestParam Integer id_usuario) {
+        List<QueryPrecioCorrespondientePorPropiedadyUsuario> dtoLista = new ArrayList<>();
+        List<String[]> filaLista = uS.PrecioCorrespondientePorPropiedadPorUsuario(id_usuario);
+        for (String[] columna : filaLista) {
+            QueryPrecioCorrespondientePorPropiedadyUsuario dto = new QueryPrecioCorrespondientePorPropiedadyUsuario();
+            dto.setNombre_cliente(columna[0]);
+            dto.setCuota_inicial(new BigDecimal(columna[1].toString()));
+            dto.setPrecio_calculado(new BigDecimal(columna[2].toString()));
+            dto.setCostos_notariales(new BigDecimal(columna[3].toString()));
+            dto.setRegistros_publicos(new BigDecimal(columna[4].toString()));
+            dto.setCostos_transaccion(new BigDecimal(columna[5].toString()));
+            dto.setMonto_bono(new BigDecimal(columna[6].toString()));
+            dto.setPrecio_propiedad(new BigDecimal(columna[7].toString()));
+            dto.setNombre_moneda(columna[8]);
             dtoLista.add(dto);
         }
         return dtoLista;
