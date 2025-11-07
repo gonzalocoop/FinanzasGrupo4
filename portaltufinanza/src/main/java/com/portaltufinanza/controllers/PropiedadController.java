@@ -55,4 +55,13 @@ public class PropiedadController {
         PropiedadDTO dto=m.map(pS.listId(id),PropiedadDTO.class);
         return dto;
     }
+
+    @GetMapping("/propiedadsegundireccion")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
+    public List<PropiedadDTO> propiedadSegunDireccion(@RequestParam String direccion) {
+        return pS.propiedadSegunDireccion(direccion).stream().map(x->{
+            ModelMapper m= new ModelMapper();
+            return m.map(x, PropiedadDTO.class);
+        }).collect(Collectors.toList());
+    }
 }

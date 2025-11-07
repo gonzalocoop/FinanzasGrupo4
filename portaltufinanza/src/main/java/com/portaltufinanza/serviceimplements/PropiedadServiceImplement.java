@@ -37,4 +37,9 @@ public class PropiedadServiceImplement implements IPropiedadService {
     public Propiedad listId(int id) {
         return pR.findById(id).orElse(new Propiedad());
     }
+
+    @Override
+    public List<Propiedad> propiedadSegunDireccion(String direccion) {
+        return pR.propiedadSegunDireccion(direccion);
+    }
 }
