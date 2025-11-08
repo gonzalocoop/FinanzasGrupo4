@@ -1,9 +1,6 @@
 package com.portaltufinanza.controllers;
 
-import com.portaltufinanza.dtos.QueryCronogramaPagosxUserDTO;
-import com.portaltufinanza.dtos.QueryPrecioCorrespondientePorPropiedadyUsuario;
-import com.portaltufinanza.dtos.QueryPropiedadxUserDTO;
-import com.portaltufinanza.dtos.UsuariosDTO;
+import com.portaltufinanza.dtos.*;
 import com.portaltufinanza.entities.Usuarios;
 import com.portaltufinanza.serviceinterfaces.IUsuariosService;
 import org.modelmapper.ModelMapper;
@@ -130,4 +127,25 @@ public class UsuariosController {
         return dtoLista;
     }
 
+    @GetMapping("/list/AnalisisdeRentabilidaddeCreditoPorUsuario")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'USUARIO')")
+    public List<QueryAnalisisRentabilidad> AnalisisdeRentabilidadPorCreditodeUsuario(@RequestParam Integer id_usuario) {
+        List<QueryAnalisisRentabilidad> dtoLista = new ArrayList<>();
+        List<String[]> filaLista = uS.AnalisisdeRentabilidadPorCreditodeUsuario(id_usuario);
+        for (String[] columna : filaLista) {
+            QueryAnalisisRentabilidad dto = new QueryAnalisisRentabilidad();
+            dto.setNombre_cliente(columna[0]);
+            dto.setId_credito(Integer.parseInt(columna[1]));
+            dto.setTir(new BigDecimal(columna[2]));
+            dto.setCok(new BigDecimal(columna[3]));
+            dto.setMargen_rentabilidad(new BigDecimal(columna[4]));
+            dto.setEstado_credito(columna[5]);
+            dto.setDireccion(columna[6]);
+            dto.setVan(new BigDecimal(columna[7]));
+            dto.setTasa_interes(new BigDecimal(columna[8]));
+            dto.setNumero_cuotas(Integer.parseInt(columna[9]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
 }

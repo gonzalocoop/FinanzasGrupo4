@@ -37,5 +37,25 @@ public interface IUsuariosRepository extends JpaRepository<Usuarios,Integer> {
             "WHERE u.id_usuario = :id_usuario", nativeQuery = true)
     public List<String[]> PrecioCorrespondientePorPropiedadPorUsuario(@Param("id_usuario")Integer id_usuario);
 
+    @Query (value="SELECT \n" +
+            "\tu.nombre_cliente,\n" +
+            "    c.id_credito,\n" +
+            "    c.tir,\n" +
+            "    c.cok,\n" +
+            "    ROUND(c.tir - c.cok, 4) AS margen_rentabilidad,\n" +
+            "    CASE\n" +
+            "        WHEN c.tir > c.cok THEN 'Rentable'\n" +
+            "        WHEN c.tir = c.cok THEN 'Neutro'\n" +
+            "        ELSE 'No rentable'\n" +
+            "    END AS estado_credito,\n" +
+            "    p.direccion,\n" +
+            "    c.van,\n" +
+            "    c.tasa_interes,\n" +
+            "    c.numero_cuotas\n" +
+            "FROM credito_mi_vivienda c\n" +
+            "JOIN usuarios u ON u.id_usuario = c.id_usuario\n" +
+            "JOIN propiedad p ON c.id_propiedad = p.id_propiedad\n" +
+            "WHERE u.id_usuario = :id_usuario",nativeQuery = true)
+    public List<String[]> AnalisisdeRentabilidadPorCreditodeUsuario(@Param("id_usuario")Integer id_usuario);
 
 }
