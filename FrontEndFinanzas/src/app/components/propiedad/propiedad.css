@@ -1,0 +1,52 @@
+:host {
+  display: block;
+  padding: 3rem;
+  background-color: var(--color-fondo-alternativo, #f4f4f4);
+  min-height: 100vh;
+}
+
+.list-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.list-header h1 {
+  margin: 0;
+  color: var(--color-texto-principal, #212121);
+}
+
+/* Estilo para la tabla de Material */
+.property-table {
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.mat-column-precio {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.mat-column-id {
+  width: 80px;
+}
+
+.mat-column-acciones {
+  width: 120px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}

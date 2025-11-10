@@ -1,0 +1,163 @@
+/* --- Contenedor Específico (si lo necesitas) --- */
+/* Nota: Angular encapsula los estilos, 
+   así que :host asegura que los estilos base se apliquen al componente */
+:host {
+  display: block;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* --- Botones --- */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+/* Botón en el Navbar */
+.btn-nav {
+    background-color: var(--color-primario-oscuro);
+    color: white;
+}
+.btn-nav:hover {
+    background-color: #C62828; /* Rojo más oscuro */
+}
+
+/* Botón en el Hero */
+.btn-hero {
+    background-color: var(--color-primario);
+    color: white;
+    font-size: 1.1rem;
+    padding: 0.8rem 2rem;
+}
+.btn-hero:hover {
+    background-color: var(--color-primario-oscuro);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* --- 1. Navbar / Encabezado --- */
+.navbar {
+    background-color: var(--color-primario);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+/* --- 2. Sección Hero (Principal) --- */
+.hero {
+    background-color: var(--color-fondo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 70vh; /* Altura de la sección */
+    padding-top: 100px; /* Espacio para el navbar fijo */
+    padding-bottom: 4rem;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero h1 {
+    font-size: 3rem; /* Tamaño del título principal */
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.25rem; /* Subtítulo */
+    color: var(--color-texto-secundario);
+    margin-bottom: 2rem;
+}
+
+/* --- 3. Sección de Características --- */
+.features {
+    padding: 4rem 0;
+    background-color: var(--color-fondo-alternativo);
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background-color: var(--color-fondo);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: left;
+}
+
+.feature-card-icon {
+    font-size: 2.5rem; /* Para emojis o iconos */
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    font-size: 1.25rem;
+}
+
+.feature-card p {
+    color: var(--color-texto-secundario);
+    font-size: 0.95rem;
+}
+
+/* --- 4. Footer (Pie de página) --- */
+.footer {
+    background-color: var(--color-texto-principal);
+    color: #ccc;
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* --- Adaptación a Móviles --- */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    .hero p {
+        font-size: 1.1rem;
+    }
+    .nav-logo {
+        font-size: 1.2rem;
+    }
+    .btn {
+        padding: 0.6rem 1rem;
+    }
+}

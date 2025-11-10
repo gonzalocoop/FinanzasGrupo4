@@ -21,11 +21,12 @@ public class CreditoMiViviendaController {
     private ICreditoMiViviendaService cmvS;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    public void registrar(@RequestBody CreditoMiViviendaDTO dto){
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'USUARIO')")
+    public CreditoMiViviendaDTO registrar(@RequestBody CreditoMiViviendaDTO dto){ // <-- Devuelve DTO
         ModelMapper m = new ModelMapper();
         CreditoMiVivienda c= m .map(dto, CreditoMiVivienda.class);
-        cmvS.insert(c);
+        CreditoMiVivienda nuevoCredito = cmvS.insert(c); // <-- Captura la entidad
+        return m.map(nuevoCredito, CreditoMiViviendaDTO.class); // <-- Devuélvela
     }
 
     @GetMapping

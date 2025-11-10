@@ -1,0 +1,90 @@
+<div class="page-container">
+  <form class="form-box" [formGroup]="form" (submit)="aceptar()">
+    
+    <h3>{{ getTitulo() }}</h3>
+
+    <div class="form-group">
+      <label for="fecha_inicio">Fecha de Inicio</label>
+      <input type="date" id="fecha_inicio" formControlName="fecha_inicio" />
+    </div>
+    <div class="form-error" *ngIf="form.controls['fecha_inicio'].invalid && form.controls['fecha_inicio'].touched">
+      <span *ngIf="form.controls['fecha_inicio'].hasError('required')">Requerido.</span>
+    </div>
+
+    <div class="form-group">
+      <label for="moneda">Moneda</label>
+      <select id="moneda" formControlName="moneda">
+        <option [ngValue]="null" disabled>Selecciona la moneda</option>
+        <option *ngFor="let m of listaMonedas" [value]="m.id_moneda">
+          {{ m.nombre_moneda }}
+        </option>
+      </select>
+    </div>
+    <div class="form-error" *ngIf="form.controls['moneda'].invalid && form.controls['moneda'].touched">
+      <span *ngIf="form.controls['moneda'].hasError('required')">Requerido.</span>
+    </div>
+
+    <div class="form-group">
+      <label for="cuota_inicial">Monto de Cuota Inicial</label>
+      <input type="number" step="0.01" id="cuota_inicial" placeholder="Ej. 20000" formControlName="cuota_inicial" />
+    </div>
+    <div class="form-error" *ngIf="form.controls['cuota_inicial'].invalid && form.controls['cuota_inicial'].touched">
+      <span *ngIf="form.controls['cuota_inicial'].hasError('required')">Requerido.</span>
+    </div>
+
+    <div class="form-group">
+      <label for="tasa_interes">Tasa de Interés (Ej. 12% = 0.12)</label>
+      <input type="number" step="0.001" id="tasa_interes" placeholder="Ej. 0.12" formControlName="tasa_interes" />
+    </div>
+    <div class="form-error" *ngIf="form.controls['tasa_interes'].invalid && form.controls['tasa_interes'].touched">
+      <span *ngIf="form.controls['tasa_interes'].hasError('required')">Requerido.</span>
+    </div>
+
+    <div class="form-group">
+      <label for="tipo_tasa">Tipo de Tasa</label>
+      <select id="tipo_tasa" formControlName="tipo_tasa">
+        <option value="NOMINAL">Nominal</option>
+        <option value="EFECTIVA">Efectiva</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="peridiocidad_tasa">Peridiocidad Tasa</label>
+      <select id="peridiocidad_tasa" formControlName="peridiocidad_tasa">
+        <option value="DIARIA">Diaria</option>
+        <option value="MENSUAL">Mensual</option>
+        <option valueD="ANUAL">Anual</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="tipo_capitalizacion">Capitalización</label>
+      <select id="tipo_capitalizacion" formControlName="tipo_capitalizacion">
+        <option value="NINGUNA">Ninguna</option>
+        <option value="DIARIA">Diaria</option>
+        <option value="MENSUAL">Mensual</option>
+        <option value="ANUAL">Anual</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="tipo_gracia">Periodo de Gracia</label>
+      <select id="tipo_gracia" formControlName="tipo_gracia">
+        <option value="NINGUNO">Ninguno</option>
+        <option value="PARCIAL">Parcial</option>
+        <option value="TOTAL">Total</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="duracion_gracia_meses">Duración Gracia (en meses)</label>
+      <input type="number" id="duracion_gracia_meses" formControlName="duracion_gracia_meses" />
+    </div>
+
+    <div class="button-container">
+      <button type="submit" class="btn-submit" [disabled]="form.invalid">Guardar Crédito</button>
+      <button type="button" class="btn-secondary" (click)="cancelar()">Cancelar</button>
+    </div>
+
+  </form>
+</div>

@@ -14,10 +14,7 @@ public class PropiedadServiceImplement implements IPropiedadService {
     @Autowired
     private IPropiedadRepository pR;
     @Override
-    public void insert(Propiedad propiedad) {
-        pR.save(propiedad);
-
-    }
+    public Propiedad insert(Propiedad propiedad) { return pR.save(propiedad); }
 
     @Override
     public List<Propiedad> list() {

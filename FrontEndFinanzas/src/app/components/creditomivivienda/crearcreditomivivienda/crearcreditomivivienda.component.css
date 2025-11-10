@@ -1,0 +1,108 @@
+/* Usamos el mismo estilo del registro para consistencia */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  box-sizing: border-box;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAAsTAAAmxwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTSuQmCC") repeat 0 0;
+  -webkit-animation: bg-scrolling-reverse .92s infinite;
+  animation: bg-scrolling-reverse .92s infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+.form-box {
+  background-color: #FDD835;
+  border-radius: 20px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.form-box h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #212121;
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #424242;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  font-size: 1rem;
+  box-sizing: border-box; 
+  font-family: inherit;
+}
+
+.form-group input::placeholder {
+  color: #BDBDBD;
+}
+
+.form-error {
+  color: #D32F2F;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: -0.5rem; 
+  margin-bottom: 1rem; 
+  padding-left: 0.25rem;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #424242;
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-submit:disabled {
+  background-color: #BDBDBD;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #E0E0E0;
+  color: #424242;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}

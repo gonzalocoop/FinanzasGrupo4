@@ -1,0 +1,171 @@
+/* --- INICIO: Nuevo fondo animado --- */
+/* Exo thin font from Google. */
+@import url(https://fonts.googleapis.com/css?family=Exo:100);
+
+/* Animations */
+@-webkit-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-moz-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-o-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-webkit-keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+@-moz-keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+@-o-keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+@keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+/* --- FIN: Nuevo fondo animado --- */
+
+
+
+:host {
+  /* --- Estilos de centrado (CORREGIDOS) --- */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* CAMBIADO: 'center' centra verticalmente */
+  width: 100%;
+  min-height: 100vh;    /* CAMBIADO: '100vh' es 100% de la altura de la pantalla */
+  box-sizing: border-box;
+
+  /* --- Estilos de fondo (Estos déjalos como están) --- */
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
+  -webkit-animation: bg-scrolling-reverse .92s infinite;
+  -moz-animation: bg-scrolling-reverse .92s infinite;
+  -o-animation: bg-scrolling-reverse .92s infinite;
+  animation: bg-scrolling-reverse .92s infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+/* La caja amarilla del formulario (SIN CAMBIOS) */
+.form-box {
+  background-color: #FDD835; /* Un amarillo/dorado similar al de la imagen */
+  border-radius: 20px; /* Esquinas muy redondeadas */
+  padding: 2.5rem; /* Espaciado interno */
+  width: 100%;
+  max-width: 400px; /* Ancho máximo del formulario */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: left; /* Alineación del texto dentro de la caja */
+}
+
+/* Título "Inicio sesión" (SIN CAMBIOS) */
+.form-box h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #212121; /* Negro */
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
+/* Contenedor de label + input (SIN CAMBIOS) */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Etiquetas "Usuario", "Contraseña" (SIN CAMBIOS) */
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #424242; /* Gris oscuro */
+  margin-bottom: 0.5rem;
+}
+
+/* Campos de texto (SIN CAMBIOS) */
+.form-group input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: none; /* Sin borde */
+  border-radius: 8px; /* Esquinas redondeadas */
+  background-color: #FFFFFF; /* Fondo blanco */
+  font-size: 1rem;
+  box-sizing: border-box; /* Importante para que el padding no rompa el ancho */
+}
+
+.form-group input::placeholder {
+  color: #BDBDBD; /* Gris claro para "Usuario..." */
+}
+
+/* Botón "Iniciar sesion" (SIN CAMBIOS) */
+.btn-submit {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #424242; /* Gris oscuro/carbón */
+  color: #FFFFFF; /* Texto blanco */
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.btn-submit:hover {
+  background-color: #212121; /* Más oscuro al pasar el mouse */
+}
+
+/* Texto "¿No tienes una cuenta?..." (SIN CAMBIOS) */
+.register-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: #424242;
+}
+
+.register-link a {
+  color: #212121;
+  font-weight: 500;
+}
+
+
+/* --- Opcional: Estilo para el botón "Salir" si decides conservarlo --- */
+.btn-secondary {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #E0E0E0; /* Un color gris claro */
+  color: #424242;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 0.75rem;
+}
+
+.btn-secondary:hover {
+  background-color: #BDBDBD;
+}

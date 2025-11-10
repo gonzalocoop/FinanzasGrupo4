@@ -1,0 +1,201 @@
+/* --- INICIO: Nuevo fondo animado --- */
+/* Exo thin font from Google. */
+@import url(https://fonts.googleapis.com/css?family=Exo:100);
+
+/* Animations */
+@-webkit-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-moz-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-o-keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@keyframes bg-scrolling-reverse {
+  100% {
+    background-position: 50px 50px;
+  }
+}
+@-webkit-keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+@-moz-keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+@-o-keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+@keyframes bg-scrolling {
+  0% {
+    background-position: 50px 50px;
+  }
+}
+/* --- FIN: Nuevo fondo animado --- */
+
+
+/* :host actualizado para centrar Y tener el fondo */
+:host {
+  /* --- Estilos de centrado (CORREGIDOS) --- */
+  display: flex;
+  justify-content: center;
+  align-items: center;      /* CAMBIADO: para centrar verticalmente */
+  width: 100%;
+  min-height: 100vh;        /* CAMBIADO: para ocupar toda la pantalla */
+  padding-top: 5rem;        /* Mantenemos un padding por si el form es muy largo */
+  padding-bottom: 5rem;
+  box-sizing: border-box;
+
+  /* --- Estilos de fondo (NUEVOS) --- */
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTKSuQmCC") repeat 0 0;
+  -webkit-animation: bg-scrolling-reverse .92s infinite;
+  -moz-animation: bg-scrolling-reverse .92s infinite;
+  -o-animation: bg-scrolling-reverse .92s infinite;
+  animation: bg-scrolling-reverse .92s infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+
+/* La caja amarilla del formulario (SIN CAMBIOS) */
+.form-box {
+  background-color: #FDD835; /* Amarillo */
+  border-radius: 20px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 450px; /* Un poco más ancho para el registro */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+/* Título "Registro..." (SIN CAMBIOS) */
+.form-box h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #212121;
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
+/* Contenedor de label + input (SIN CAMBIOS) */
+.form-group {
+  margin-bottom: 1rem; /* Menos espacio entre inputs */
+}
+
+/* Etiquetas "Usuario", "Contraseña", etc. (SIN CAMBIOS) */
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #424242;
+  margin-bottom: 0.5rem;
+}
+
+/* Campos de texto <input> y <select> (SIN CAMBIOS) */
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  font-size: 1rem;
+  box-sizing: border-box; 
+  font-family: inherit; /* Heredar la fuente del body */
+}
+
+.form-group input::placeholder {
+  color: #BDBDBD;
+}
+
+/* --- Estilos para el <select> --- (SIN CAMBIOS) */
+.form-group select {
+  appearance: none; 
+  /* Flecha SVG para el select */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23424242%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20128c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.6-3.6%205.4-7.8%205.4-12.8%200-5-1.8-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 0.65em auto;
+  padding-right: 2.5rem; 
+  cursor: pointer;
+}
+
+/* --- Estilo para mensajes de error --- (SIN CAMBIOS) */
+.form-error {
+  color: #D32F2F; /* Rojo oscuro para errores */
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: left;
+  margin-top: -0.5rem; 
+  margin-bottom: 1rem; 
+  padding-left: 0.25rem;
+}
+
+.form-error span {
+  display: block; /* Un error por línea */
+}
+
+/* --- Contenedor de botones --- (SIN CAMBIOS) */
+.button-container {
+  display: flex;
+  flex-direction: column; /* Apila los botones verticalmente */
+  gap: 0.75rem; /* Espacio entre botones */
+  margin-top: 2rem; /* Espacio sobre los botones */
+}
+
+/* Botón "Aceptar" (SIN CAMBIOS) */
+.btn-submit {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #424242; /* Carbón */
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #212121;
+}
+
+/* Estilo para el botón cuando está deshabilitado (SIN CAMBIOS) */
+.btn-submit:disabled {
+  background-color: #BDBDBD; /* Gris claro */
+  color: #757575;
+  cursor: not-allowed;
+}
+
+/* Botón "Cancelar" (SIN CAMBIOS) */
+.btn-secondary {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #E0E0E0; /* Gris claro */
+  color: #424242;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #BDBDBD;
+}

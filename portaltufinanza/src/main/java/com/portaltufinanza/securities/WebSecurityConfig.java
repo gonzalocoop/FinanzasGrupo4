@@ -69,7 +69,7 @@ public class WebSecurityConfig {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("/login",
+                        .requestMatchers("/login","/registrarusuario","/registrarusuario/listarusuarios","/registrarusuario/listarroles","/api/v1/authentication/**",
                                 "/v3/api-docs/**",
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
