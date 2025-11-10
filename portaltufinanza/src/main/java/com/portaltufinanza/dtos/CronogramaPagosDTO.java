@@ -17,7 +17,7 @@ public class CronogramaPagosDTO {
     private BigDecimal amortizacion_cuota;
     private BigDecimal seguro_desgravamen;
     private BigDecimal seguro_bien;
-    private int saldo_restante;
+    private BigDecimal saldo_restante;
     private CreditoMiVivienda credito;
 
     public int getId_cronograma() {
@@ -84,11 +84,11 @@ public class CronogramaPagosDTO {
         this.seguro_bien = seguro_bien;
     }
 
-    public int getSaldo_restante() {
+    public BigDecimal getSaldo_restante() {
         return saldo_restante;
     }
 
-    public void setSaldo_restante(int saldo_restante) {
+    public void setSaldo_restante(BigDecimal saldo_restante) {
         this.saldo_restante = saldo_restante;
     }
 

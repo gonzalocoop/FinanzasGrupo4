@@ -24,15 +24,15 @@ public class CreditoMiVivienda {
     @Column(name = "tipo_capitalizacion", nullable = true, length = 8)
     private String tipo_capitalizacion;
     @Column(name = "m_numero_capitalizaciones", nullable = true)
-    private int m_numero_capitalizaciones;
+    private BigDecimal m_numero_capitalizaciones;
     @Column(name = "n_numero_periodos", nullable = true)
-    private int n_numero_periodos;
+    private BigDecimal n_numero_periodos;
     @Column(name = "tem_requerido", nullable = false, precision = 12, scale = 9)
     private BigDecimal tem_requerido;
     @Column(name = "tea", nullable = false, precision = 12, scale = 9)
     private BigDecimal tea;
-    @Column(name = "tna", nullable = false, precision = 12, scale = 9)
-    private BigDecimal tna;
+    @Column(name = "tcea", nullable = false, precision = 12, scale = 9)
+    private BigDecimal tcea;
     @Column(name = "tipo_gracia", nullable = false, length = 8)
     private String tipo_gracia;
     @Column(name = "duracion_gracia_meses", nullable = true)
@@ -43,6 +43,8 @@ public class CreditoMiVivienda {
     private BigDecimal cuota_inicial;
     @Column(name = "saldo_inicial", nullable = false, precision = 17, scale = 9)
     private BigDecimal saldo_inicial;
+    @Column(name = "cok", nullable = false, precision = 12, scale = 9)
+    private BigDecimal cok;
     @Column(name = "van", nullable = false, precision = 17, scale = 9)
     private BigDecimal van;
     @Column(name = "tir", nullable = false, precision = 12, scale = 9)
@@ -50,9 +52,6 @@ public class CreditoMiVivienda {
     @ManyToOne
     @JoinColumn(name = "id_propiedad")
     private Propiedad propiedad;
-    @ManyToOne
-    @JoinColumn(name = "id_moneda")
-    private Moneda moneda;
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Usuarios usuario;
@@ -63,7 +62,7 @@ public class CreditoMiVivienda {
     public CreditoMiVivienda() {
     }
 
-    public CreditoMiVivienda(int id_credito, LocalDate fecha_inicio, LocalDate fecha_fin, String tipo_tasa, BigDecimal tasa_interes, String peridiocidad_tasa, String tipo_capitalizacion, int m_numero_capitalizaciones, int n_numero_periodos, BigDecimal tem_requerido, BigDecimal tea, BigDecimal tna, String tipo_gracia, int duracion_gracia_meses, int numero_cuotas, BigDecimal cuota_inicial, BigDecimal saldo_inicial, BigDecimal van, BigDecimal tir, Propiedad propiedad, Moneda moneda, Usuarios usuario, PrecioCorrespondiente preciocorrespondiente) {
+    public CreditoMiVivienda(int id_credito, LocalDate fecha_inicio, LocalDate fecha_fin, String tipo_tasa, BigDecimal tasa_interes, String peridiocidad_tasa, String tipo_capitalizacion, BigDecimal m_numero_capitalizaciones, BigDecimal n_numero_periodos, BigDecimal tem_requerido, BigDecimal tea, BigDecimal tcea, String tipo_gracia, int duracion_gracia_meses, int numero_cuotas, BigDecimal cuota_inicial, BigDecimal saldo_inicial, BigDecimal cok, BigDecimal van, BigDecimal tir, Propiedad propiedad, Usuarios usuario, PrecioCorrespondiente preciocorrespondiente) {
         this.id_credito = id_credito;
         this.fecha_inicio = fecha_inicio;
         this.fecha_fin = fecha_fin;
@@ -75,16 +74,16 @@ public class CreditoMiVivienda {
         this.n_numero_periodos = n_numero_periodos;
         this.tem_requerido = tem_requerido;
         this.tea = tea;
-        this.tna = tna;
+        this.tcea = tcea;
         this.tipo_gracia = tipo_gracia;
         this.duracion_gracia_meses = duracion_gracia_meses;
         this.numero_cuotas = numero_cuotas;
         this.cuota_inicial = cuota_inicial;
         this.saldo_inicial = saldo_inicial;
+        this.cok = cok;
         this.van = van;
         this.tir = tir;
         this.propiedad = propiedad;
-        this.moneda = moneda;
         this.usuario = usuario;
         this.preciocorrespondiente = preciocorrespondiente;
     }
@@ -145,19 +144,19 @@ public class CreditoMiVivienda {
         this.tipo_capitalizacion = tipo_capitalizacion;
     }
 
-    public int getM_numero_capitalizaciones() {
+    public BigDecimal getM_numero_capitalizaciones() {
         return m_numero_capitalizaciones;
     }
 
-    public void setM_numero_capitalizaciones(int m_numero_capitalizaciones) {
+    public void setM_numero_capitalizaciones(BigDecimal m_numero_capitalizaciones) {
         this.m_numero_capitalizaciones = m_numero_capitalizaciones;
     }
 
-    public int getN_numero_periodos() {
+    public BigDecimal getN_numero_periodos() {
         return n_numero_periodos;
     }
 
-    public void setN_numero_periodos(int n_numero_periodos) {
+    public void setN_numero_periodos(BigDecimal n_numero_periodos) {
         this.n_numero_periodos = n_numero_periodos;
     }
 
@@ -177,12 +176,12 @@ public class CreditoMiVivienda {
         this.tea = tea;
     }
 
-    public BigDecimal getTna() {
-        return tna;
+    public BigDecimal getTcea() {
+        return tcea;
     }
 
-    public void setTna(BigDecimal tna) {
-        this.tna = tna;
+    public void setTcea(BigDecimal tcea) {
+        this.tcea = tcea;
     }
 
     public String getTipo_gracia() {
@@ -209,12 +208,28 @@ public class CreditoMiVivienda {
         this.numero_cuotas = numero_cuotas;
     }
 
+    public BigDecimal getCuota_inicial() {
+        return cuota_inicial;
+    }
+
+    public void setCuota_inicial(BigDecimal cuota_inicial) {
+        this.cuota_inicial = cuota_inicial;
+    }
+
     public BigDecimal getSaldo_inicial() {
         return saldo_inicial;
     }
 
     public void setSaldo_inicial(BigDecimal saldo_inicial) {
         this.saldo_inicial = saldo_inicial;
+    }
+
+    public BigDecimal getCok() {
+        return cok;
+    }
+
+    public void setCok(BigDecimal cok) {
+        this.cok = cok;
     }
 
     public BigDecimal getVan() {
@@ -241,14 +256,6 @@ public class CreditoMiVivienda {
         this.propiedad = propiedad;
     }
 
-    public Moneda getMoneda() {
-        return moneda;
-    }
-
-    public void setMoneda(Moneda moneda) {
-        this.moneda = moneda;
-    }
-
     public Usuarios getUsuario() {
         return usuario;
     }
@@ -263,13 +270,5 @@ public class CreditoMiVivienda {
 
     public void setPreciocorrespondiente(PrecioCorrespondiente preciocorrespondiente) {
         this.preciocorrespondiente = preciocorrespondiente;
-    }
-
-    public BigDecimal getCuota_inicial() {
-        return cuota_inicial;
-    }
-
-    public void setCuota_inicial(BigDecimal cuota_inicial) {
-        this.cuota_inicial = cuota_inicial;
     }
 }
