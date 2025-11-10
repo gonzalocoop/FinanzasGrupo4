@@ -12,6 +12,12 @@ public class PrecioCorrespondiente {
     private int id_precio_correspondiente;
     @Column(name = "cuota_inicial", nullable = false, precision = 16, scale = 9)
     private BigDecimal cuota_inicial;
+    @Column(name = "costos_notariales", nullable = false, precision = 16, scale = 9)
+    private BigDecimal costos_notariales;
+    @Column(name = "registros_publicos", nullable = false, precision = 16, scale = 9)
+    private BigDecimal registros_publicos;
+    @Column(name = "costos_transaccion", nullable = false, precision = 16, scale = 9)
+    private BigDecimal costos_transaccion;
     @Column(name = "precio_calculado", nullable = false, precision = 17, scale = 9)
     private BigDecimal precio_calculado;
     @ManyToOne
@@ -27,9 +33,12 @@ public class PrecioCorrespondiente {
     public PrecioCorrespondiente() {
     }
 
-    public PrecioCorrespondiente(int id_precio_correspondiente, BigDecimal cuota_inicial, BigDecimal precio_calculado, BonoBBP bono, Propiedad propiedad, Moneda moneda) {
+    public PrecioCorrespondiente(int id_precio_correspondiente, BigDecimal cuota_inicial, BigDecimal costos_notariales, BigDecimal registros_publicos, BigDecimal costos_transaccion, BigDecimal precio_calculado, BonoBBP bono, Propiedad propiedad, Moneda moneda) {
         this.id_precio_correspondiente = id_precio_correspondiente;
         this.cuota_inicial = cuota_inicial;
+        this.costos_notariales = costos_notariales;
+        this.registros_publicos = registros_publicos;
+        this.costos_transaccion = costos_transaccion;
         this.precio_calculado = precio_calculado;
         this.bono = bono;
         this.propiedad = propiedad;
@@ -50,6 +59,30 @@ public class PrecioCorrespondiente {
 
     public void setCuota_inicial(BigDecimal cuota_inicial) {
         this.cuota_inicial = cuota_inicial;
+    }
+
+    public BigDecimal getCostos_notariales() {
+        return costos_notariales;
+    }
+
+    public void setCostos_notariales(BigDecimal costos_notariales) {
+        this.costos_notariales = costos_notariales;
+    }
+
+    public BigDecimal getRegistros_publicos() {
+        return registros_publicos;
+    }
+
+    public void setRegistros_publicos(BigDecimal registros_publicos) {
+        this.registros_publicos = registros_publicos;
+    }
+
+    public BigDecimal getCostos_transaccion() {
+        return costos_transaccion;
+    }
+
+    public void setCostos_transaccion(BigDecimal costos_transaccion) {
+        this.costos_transaccion = costos_transaccion;
     }
 
     public BigDecimal getPrecio_calculado() {

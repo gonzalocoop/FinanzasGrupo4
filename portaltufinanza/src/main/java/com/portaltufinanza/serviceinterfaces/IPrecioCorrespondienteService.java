@@ -1,7 +1,9 @@
 package com.portaltufinanza.serviceinterfaces;
 
 import com.portaltufinanza.entities.PrecioCorrespondiente;
+import org.springframework.data.repository.query.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface IPrecioCorrespondienteService {
@@ -10,4 +12,7 @@ public interface IPrecioCorrespondienteService {
     public void delete(int id);
     public void update(PrecioCorrespondiente precio);
     public PrecioCorrespondiente listId(int id);
+    public List<PrecioCorrespondiente> precioSegunDireccionPropiedad(String direccion);
+    public void registrarPrecioCorrespondiente(BigDecimal costos_notariales, BigDecimal registros_publicos, BigDecimal costos_transaccion, int id_propiedad, int id_moneda);
+
 }
