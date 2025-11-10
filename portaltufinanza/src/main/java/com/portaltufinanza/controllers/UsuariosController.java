@@ -148,4 +148,20 @@ public class UsuariosController {
         }
         return dtoLista;
     }
+
+    @GetMapping("/list/CreditosPorUsuarioConPeriododeGracia")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'USUARIO')")
+    public List<QueryCreditosPorUsuarioConPeriododeGracia> CreditosPorUsuarioConPeriododeGracia(@RequestParam Integer id_usuario) {
+        List<QueryCreditosPorUsuarioConPeriododeGracia> dtoLista = new ArrayList<>();
+        List<String[]> filaLista = uS.CreditosPorUsuarioConPeriododeGracia(id_usuario);
+        for (String[] columna : filaLista) {
+            QueryCreditosPorUsuarioConPeriododeGracia dto = new QueryCreditosPorUsuarioConPeriododeGracia();
+            dto.setId_credito(Integer.parseInt(columna[0]));
+            dto.setTipo_gracia(columna[1]);
+            dto.setDuracion_gracia_meses(Integer.parseInt(columna[2]));
+            dto.setNumero_cuotas(Integer.parseInt(columna[3]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
 }

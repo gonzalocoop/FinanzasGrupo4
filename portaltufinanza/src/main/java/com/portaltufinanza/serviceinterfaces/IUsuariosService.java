@@ -16,4 +16,5 @@ public interface IUsuariosService {
     public List<String[]> CronogramadePagosPorUsuario(Integer id_usuario);
     public List<String[]> PrecioCorrespondientePorPropiedadPorUsuario(Integer id_usuario);
     public List<String[]> AnalisisdeRentabilidadPorCreditodeUsuario(Integer id_usuario);
+    public List<String[]> CreditosPorUsuarioConPeriododeGracia(Integer id_usuario);
 }

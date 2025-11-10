@@ -58,4 +58,9 @@ public class UsuariosServiceImplement implements IUsuariosService {
     public List<String[]> AnalisisdeRentabilidadPorCreditodeUsuario(Integer id_usuario) {
         return uR.AnalisisdeRentabilidadPorCreditodeUsuario(id_usuario);
     }
+
+    @Override
+    public List<String[]> CreditosPorUsuarioConPeriododeGracia(Integer id_usuario) {
+        return uR.CreditosPorUsuarioConPeriododeGracia(id_usuario);
+    }
 }

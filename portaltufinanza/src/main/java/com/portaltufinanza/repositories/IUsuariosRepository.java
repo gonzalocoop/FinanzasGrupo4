@@ -58,4 +58,11 @@ public interface IUsuariosRepository extends JpaRepository<Usuarios,Integer> {
             "WHERE u.id_usuario = :id_usuario",nativeQuery = true)
     public List<String[]> AnalisisdeRentabilidadPorCreditodeUsuario(@Param("id_usuario")Integer id_usuario);
 
+
+
+    @Query(value = "SELECT id_credito, tipo_gracia, duracion_gracia_meses, numero_cuotas\n" +
+            "FROM credito_mi_vivienda\n" +
+            "WHERE id_usuario = :id_usuario\n" +
+            "  AND tipo_gracia <> 'Ninguno'",nativeQuery = true)
+    public List<String[]> CreditosPorUsuarioConPeriododeGracia(@Param("id_usuario")Integer id_usuario);
 }
