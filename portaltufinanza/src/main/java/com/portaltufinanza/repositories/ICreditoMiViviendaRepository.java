@@ -103,4 +103,38 @@ public interface ICreditoMiViviendaRepository extends JpaRepository<CreditoMiViv
     void calcularYActualizarTEM(
             @Param("id_credito") Integer id_credito
     );
+
+    @Transactional
+    @Modifying
+    @Query(
+            nativeQuery = true,
+            // *** CAMBIO: Usamos CALL para ejecutar el PROCEDURE ***
+            value = "CALL generar_cronograma_pagos(:id_credito)"
+    )
+    void generarCronogramaPagos(@Param("id_credito") Integer id_credito);
+
+    @Transactional
+    @Modifying
+    @Query(
+            nativeQuery = true,
+            // *** CAMBIO: Usamos CALL para ejecutar el PROCEDURE ***
+            value = "CALL calcular_van_tir(:id_credito)"
+    )
+    void calcularVanTir(@Param("id_credito") Integer id_credito);
+
+
+    @Transactional
+    @Modifying
+    @Query(
+            nativeQuery = true,
+            value = "UPDATE credito_mi_vivienda " +
+                    "SET " +
+                    "    tea = POW( (1.0 + tem_requerido), 12) - 1.0, " + // TEA = (1 + TEM)^12 - 1
+                    "    tcea = POW( (1.0 + tir), 12) - 1.0 " +           // TCEA = (1 + TIR)^12 - 1
+                    "WHERE id_credito = :id_credito"
+    )
+    void convertirTasasAnuales(@Param("id_credito") Integer id_credito);
+
 }
+
+

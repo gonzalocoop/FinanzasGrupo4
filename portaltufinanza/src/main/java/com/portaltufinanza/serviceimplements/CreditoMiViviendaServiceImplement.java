@@ -54,5 +54,20 @@ public class CreditoMiViviendaServiceImplement implements ICreditoMiViviendaServ
         cmvR.calcularYActualizarTEM(id_credito);
     }
 
+    @Override
+    public void generarCronogramaPagos(int id_credito) {
+        cmvR.generarCronogramaPagos(id_credito);
+    }
+
+    @Override
+    public void calcularVanTir(int id_credito) {
+        cmvR.calcularVanTir(id_credito);
+    }
+
+    @Override
+    public void convertirTasasAnuales(int id_credito) {
+        cmvR.convertirTasasAnuales(id_credito);
+    }
+
 
 }

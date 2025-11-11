@@ -27,4 +27,7 @@ public interface ICreditoMiViviendaService {
             int idUsuario
     );
     public void calcularYActualizarTEM(int id_credito);
+    public void generarCronogramaPagos(int id_credito);
+    public void calcularVanTir(int id_credito);
+    public void convertirTasasAnuales(int id_credito);
 }
