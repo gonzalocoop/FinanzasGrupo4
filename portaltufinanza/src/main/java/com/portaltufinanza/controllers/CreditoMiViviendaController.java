@@ -6,6 +6,7 @@ import com.portaltufinanza.serviceinterfaces.ICreditoMiViviendaService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -81,5 +82,45 @@ public class CreditoMiViviendaController {
     public void calcularYActualizarTEM(
                                            @RequestParam int id_credito) {
         cmvS.calcularYActualizarTEM(id_credito);
+    }
+
+    @PostMapping("/generarcronograma")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
+    public ResponseEntity<String> generarCronograma(@RequestParam("id_credito") int id_credito) {
+
+        try {
+            // Llama al servicio (metodo void).
+            cmvS.generarCronogramaPagos(id_credito);
+
+            // Responde con éxito.
+            return ResponseEntity.ok("Cronograma generado exitosamente para el Crédito ID: " + id_credito);
+
+        } catch (Exception e) {
+            // Captura cualquier excepción de la DB (errores en el Procedure).
+            return ResponseEntity.internalServerError().body("Error al generar el cronograma: " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/calcularvanytir")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
+    public ResponseEntity<String> calcularVanTir(@RequestParam("id_credito") int id_credito) {
+
+        try {
+            // Llama al servicio (metodo void).
+            cmvS.calcularVanTir(id_credito);
+
+            // Responde con éxito.
+            return ResponseEntity.ok("Van y Tir generado exitosamente para el Crédito ID: " + id_credito);
+
+        } catch (Exception e) {
+            // Captura cualquier excepción de la DB (errores en el Procedure).
+            return ResponseEntity.internalServerError().body("Error al generar el van y tir: " + e.getMessage());
+        }
+    }
+
+    @PutMapping("/calcularteatcea")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
+    public void convertirTasasAnuales(@RequestParam("id_credito") int id_credito){
+        cmvS.convertirTasasAnuales(id_credito);
     }
 }

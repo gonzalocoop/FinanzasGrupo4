@@ -31,7 +31,7 @@ public class CreditoMiVivienda {
     private BigDecimal tem_requerido;
     @Column(name = "tea", nullable = false, precision = 12, scale = 9)
     private BigDecimal tea;
-    @Column(name = "tcea", nullable = false, precision = 12, scale = 9)
+    @Column(name = "tcea", nullable = false, precision = 18, scale = 9)
     private BigDecimal tcea;
     @Column(name = "tipo_gracia", nullable = false, length = 8)
     private String tipo_gracia;
@@ -45,9 +45,9 @@ public class CreditoMiVivienda {
     private BigDecimal saldo_inicial;
     @Column(name = "cok", nullable = false, precision = 12, scale = 9)
     private BigDecimal cok;
-    @Column(name = "van", nullable = false, precision = 17, scale = 9)
+    @Column(name = "van", nullable = false, precision = 18, scale = 9)
     private BigDecimal van;
-    @Column(name = "tir", nullable = false, precision = 12, scale = 9)
+    @Column(name = "tir", nullable = false, precision = 18, scale = 9)
     private BigDecimal tir;
     @ManyToOne
     @JoinColumn(name = "id_propiedad")

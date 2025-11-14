@@ -1,6 +1,7 @@
 package com.portaltufinanza.controllers;
 
 import com.portaltufinanza.dtos.CronogramaPagosDTO;
+import com.portaltufinanza.dtos.PrecioCorrespondienteDTO;
 import com.portaltufinanza.entities.CronogramaPagos;
 import com.portaltufinanza.serviceinterfaces.ICronogramaPagosService;
 import org.modelmapper.ModelMapper;
@@ -54,5 +55,14 @@ public class CronogramaPagosController {
         ModelMapper m=new ModelMapper();
         CronogramaPagosDTO dto=m.map(cpS.listId(id),CronogramaPagosDTO.class);
         return dto;
+    }
+
+    @GetMapping("/todoscronogramascredito")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
+    public List<CronogramaPagosDTO> TodosCronogramasDeUnCredito(@RequestParam int id_credito) {
+        return cpS.TodosCronogramasDeUnCredito(id_credito).stream().map(x->{
+            ModelMapper m= new ModelMapper();
+            return m.map(x, CronogramaPagosDTO.class);
+        }).collect(Collectors.toList());
     }
 }
