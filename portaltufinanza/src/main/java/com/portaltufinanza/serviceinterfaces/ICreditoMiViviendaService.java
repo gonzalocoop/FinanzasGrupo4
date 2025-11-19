@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface ICreditoMiViviendaService {
-    public void insert(CreditoMiVivienda credito);
+    public CreditoMiVivienda insert(CreditoMiVivienda credito);
     public List<CreditoMiVivienda> list();
     public void delete(int id);
     public void update(CreditoMiVivienda credito);
@@ -27,4 +27,7 @@ public interface ICreditoMiViviendaService {
             int idUsuario
     );
     public void calcularYActualizarTEM(int id_credito);
+    public void generarCronogramaPagos(int id_credito);
+    public void calcularVanTir(int id_credito);
+    public void convertirTasasAnuales(int id_credito);
 }

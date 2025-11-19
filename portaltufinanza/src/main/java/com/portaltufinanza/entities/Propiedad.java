@@ -16,6 +16,8 @@ public class Propiedad {
     private String direccion;
     @Column(name = "precio_propiedad", nullable = false, precision = 10, scale = 4)
     private BigDecimal precio_propiedad;
+    @Column(name = "url_imagen", nullable = true, length = 255) // Es nullable (opcional)
+    private String url_imagen;
 
     public Propiedad() {
     }
@@ -57,5 +59,12 @@ public class Propiedad {
 
     public void setPrecio_propiedad(BigDecimal precio_propiedad) {
         this.precio_propiedad = precio_propiedad;
+    }
+    public String getUrl_imagen() {
+        return url_imagen;
+    }
+
+    public void setUrl_imagen(String url_imagen) {
+        this.url_imagen = url_imagen;
     }
 }

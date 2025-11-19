@@ -18,9 +18,7 @@ public class CreditoMiViviendaServiceImplement implements ICreditoMiViviendaServ
     private ICreditoMiViviendaRepository cmvR;
 
     @Override
-    public void insert(CreditoMiVivienda credito) {
-        cmvR.save(credito);
-    }
+    public CreditoMiVivienda insert(CreditoMiVivienda credito) { return cmvR.save(credito); }
 
     @Override
     public List<CreditoMiVivienda> list() {
@@ -52,6 +50,21 @@ public class CreditoMiViviendaServiceImplement implements ICreditoMiViviendaServ
     @Override
     public void calcularYActualizarTEM(int id_credito) {
         cmvR.calcularYActualizarTEM(id_credito);
+    }
+
+    @Override
+    public void generarCronogramaPagos(int id_credito) {
+        cmvR.generarCronogramaPagos(id_credito);
+    }
+
+    @Override
+    public void calcularVanTir(int id_credito) {
+        cmvR.calcularVanTir(id_credito);
+    }
+
+    @Override
+    public void convertirTasasAnuales(int id_credito) {
+        cmvR.convertirTasasAnuales(id_credito);
     }
 
 

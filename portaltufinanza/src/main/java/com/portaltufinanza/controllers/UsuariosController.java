@@ -52,7 +52,7 @@ public class UsuariosController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'USUARIO')")
     public void modificar(@RequestBody UsuariosDTO dto){
         ModelMapper m = new ModelMapper();
         Usuarios c = m.map(dto, Usuarios.class);

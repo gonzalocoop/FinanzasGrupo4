@@ -38,4 +38,9 @@ public class CronogramaPagosServiceImplement implements ICronogramaPagosService 
     public CronogramaPagos listId(int id) {
         return cpR.findById(id).orElse(new CronogramaPagos());
     }
+
+    @Override
+    public List<CronogramaPagos> TodosCronogramasDeUnCredito(int id_credito) {
+        return cpR.TodosCronogramasDeUnCredito(id_credito);
+    }
 }
