@@ -38,4 +38,29 @@ public class UsuariosServiceImplement implements IUsuariosService {
     public Usuarios listId(int id) {
         return uR.findById(id).orElse(new Usuarios());
     }
+
+    @Override
+    public List<String[]> PropiedadesFinanciadasPorUsuario(Integer id_usuario) {
+        return uR.PropiedadesFinanciadasPorUsuario(id_usuario);
+    }
+
+    @Override
+    public List<String[]> CronogramadePagosPorUsuario(Integer id_usuario) {
+        return uR.CronogramadePagosPorUsuario(id_usuario);
+    }
+
+    @Override
+    public List<String[]> PrecioCorrespondientePorPropiedadPorUsuario(Integer id_usuario) {
+        return uR.PrecioCorrespondientePorPropiedadPorUsuario(id_usuario);
+    }
+
+    @Override
+    public List<String[]> AnalisisdeRentabilidadPorCreditodeUsuario(Integer id_usuario) {
+        return uR.AnalisisdeRentabilidadPorCreditodeUsuario(id_usuario);
+    }
+
+    @Override
+    public List<String[]> CreditosPorUsuarioConPeriododeGracia(Integer id_usuario) {
+        return uR.CreditosPorUsuarioConPeriododeGracia(id_usuario);
+    }
 }

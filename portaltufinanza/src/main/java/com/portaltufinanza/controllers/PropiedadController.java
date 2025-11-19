@@ -18,11 +18,12 @@ public class PropiedadController {
     private IPropiedadService pS;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    public void registrar(@RequestBody PropiedadDTO dto){
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'USUARIO')")
+    public PropiedadDTO registrar(@RequestBody PropiedadDTO dto){ // <-- Devuelve DTO
         ModelMapper m = new ModelMapper();
-        Propiedad c= m .map(dto, Propiedad.class);
-        pS.insert(c);
+        Propiedad c = m .map(dto, Propiedad.class);
+        Propiedad nuevaPropiedad = pS.insert(c); // <-- Captura la entidad guardada
+        return m.map(nuevaPropiedad, PropiedadDTO.class); // <-- Devuélvela al frontend
     }
 
     @GetMapping
@@ -54,5 +55,14 @@ public class PropiedadController {
         ModelMapper m=new ModelMapper();
         PropiedadDTO dto=m.map(pS.listId(id),PropiedadDTO.class);
         return dto;
+    }
+
+    @GetMapping("/propiedadsegundireccion")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
+    public List<PropiedadDTO> propiedadSegunDireccion(@RequestParam String direccion) {
+        return pS.propiedadSegunDireccion(direccion).stream().map(x->{
+            ModelMapper m= new ModelMapper();
+            return m.map(x, PropiedadDTO.class);
+        }).collect(Collectors.toList());
     }
 }

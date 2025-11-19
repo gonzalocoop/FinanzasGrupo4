@@ -1,0 +1,100 @@
+/* --- Fondo animado (Igual que en las otras pantallas) --- */
+@import url(https://fonts.googleapis.com/css?family=Exo:100);
+/* ... (puedes copiar los keyframes si quieres, o dejar que se hereden si están globales) ... */
+@-webkit-keyframes bg-scrolling-reverse { 100% { background-position: 50px 50px; } }
+@-moz-keyframes bg-scrolling-reverse { 100% { background-position: 50px 50px; } }
+@-o-keyframes bg-scrolling-reverse { 100% { background-position: 50px 50px; } }
+@keyframes bg-scrolling-reverse { 100% { background-position: 50px 50px; } }
+@-webkit-keyframes bg-scrolling { 0% { background-position: 50px 50px; } }
+@-moz-keyframes bg-scrolling { 0% { background-position: 50px 50px; } }
+@-o-keyframes bg-scrolling { 0% { background-position: 50px 50px; } }
+@keyframes bg-scrolling { 0% { background-position: 50px 50px; } }
+
+:host {
+  display: block;
+  padding: 3rem;
+  background-color: var(--color-fondo-alternativo, #f4f4f4);
+  min-height: 100vh;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.detalle-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.detalle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.detalle-header h1 {
+  margin: 0;
+  color: var(--color-texto-principal, #212121);
+}
+
+.detalle-card {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
+  padding: 2.5rem 3rem;
+}
+
+.detalle-section {
+  margin-bottom: 2.5rem;
+}
+
+.detalle-section:last-child {
+  margin-bottom: 0;
+}
+
+.detalle-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primario, #E53935);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 1.5rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-texto-secundario, #424242);
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-texto-principal, #212121);
+}
+
+.info-value.info-importante {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #0d47a1;
+}

@@ -14,10 +14,7 @@ public class PropiedadServiceImplement implements IPropiedadService {
     @Autowired
     private IPropiedadRepository pR;
     @Override
-    public void insert(Propiedad propiedad) {
-        pR.save(propiedad);
-
-    }
+    public Propiedad insert(Propiedad propiedad) { return pR.save(propiedad); }
 
     @Override
     public List<Propiedad> list() {
@@ -36,5 +33,10 @@ public class PropiedadServiceImplement implements IPropiedadService {
     @Override
     public Propiedad listId(int id) {
         return pR.findById(id).orElse(new Propiedad());
+    }
+
+    @Override
+    public List<Propiedad> propiedadSegunDireccion(String direccion) {
+        return pR.propiedadSegunDireccion(direccion);
     }
 }
