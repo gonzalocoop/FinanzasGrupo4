@@ -1,0 +1,109 @@
+<div class="spinner-container" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="detalle-container" *ngIf="!isLoading && credito">
+  <div class="detalle-header">
+    <h1>Detalles del Crédito (ID: {{ credito.id_credito }})</h1>
+    <button mat-flat-button color="accent" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      Volver
+    </button>
+  </div>
+
+  <div class="detalle-card">
+    
+    <div class="detalle-section">
+      <h2>Propiedad Asociada</h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Propiedad ID:</span>
+          <span class="info-value">{{ credito.propiedad?.id_propiedad }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Dirección:</span>
+          <span class="info-value">{{ credito.propiedad?.direccion }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Tipo:</span>
+          <span class="info-value">{{ credito.propiedad?.tipo_propiedad }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="detalle-section">
+      <h2>Montos y Tasas</h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Moneda:</span>
+          <span class="info-value">{{ credito.preciocorrespondiente?.moneda?.nombre_moneda }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Saldo Inicial (Préstamo):</span>
+          <span class="info-value">{{ credito.saldo_inicial | number:'1.2-2' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Cuota Inicial Pagada:</span>
+          <span class="info-value">{{ credito.cuota_inicial | number:'1.2-2' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Tasa de Interés (TEA):</span>
+          <span class="info-value">{{ (credito.tea  ) | number:'1.4-4' }}%</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Tasa de Interés (TCEA):</span>
+          <span class="info-value">{{ (credito.tcea ) | number:'1.4-4' }}%</span> 
+        </div>
+        <div class="info-item">
+          <span class="info-label">Tasa de Interés (TEM):</span>
+          <span class="info-value">{{ (credito.tem_requerido * 100) | number:'1.4-4' }}%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="detalle-section">
+      <h2>Condiciones del Crédito</h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Fecha de Inicio:</span>
+          <span class="info-value">{{ credito.fecha_inicio | date:'dd/MM/yyyy' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Número de Cuotas:</span>
+          <span class="info-value">{{ credito.numero_cuotas }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Tipo de Tasa:</span>
+          <span class="info-value">{{ credito.tipo_tasa }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Tipo de Gracia:</span>
+          <span class="info-value">{{ credito.tipo_gracia }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Meses de Gracia:</span>
+          <span class="info-value">{{ credito.duracion_gracia_meses }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="detalle-section">
+      <h2>Resultados Financieros</h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">COK (Tasa de Descuento):</span>
+          <span class="info-value">{{ (credito.cok) | number:'1.2-2' }}%</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">VAN (Valor Actual Neto):</span>
+          <span class="info-value info-importante">{{ credito.van | number:'1.2-2' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">TIR (Tasa Interna de Retorno):</span>
+          <span class="info-value info-importante">{{ (credito.tir * 100) | number:'1.4-4' }}%</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

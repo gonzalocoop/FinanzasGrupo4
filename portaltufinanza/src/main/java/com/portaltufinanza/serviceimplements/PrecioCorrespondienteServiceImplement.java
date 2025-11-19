@@ -1,6 +1,5 @@
 package com.portaltufinanza.serviceimplements;
 
-import com.portaltufinanza.entities.BonoBBP;
 import com.portaltufinanza.entities.PrecioCorrespondiente;
 import com.portaltufinanza.repositories.IPrecioCorrespondienteRepository;
 import com.portaltufinanza.serviceinterfaces.IPrecioCorrespondienteService;
@@ -19,12 +18,12 @@ public class PrecioCorrespondienteServiceImplement implements IPrecioCorrespondi
     @Override
     public void insert(PrecioCorrespondiente precio) {
         pcR.save(precio);
-
     }
 
     @Override
     public List<PrecioCorrespondiente> list() {
-        return pcR.findAll();    }
+        return pcR.findAll();
+    }
 
     @Override
     public void delete(int id) {
@@ -47,7 +46,17 @@ public class PrecioCorrespondienteServiceImplement implements IPrecioCorrespondi
     }
 
     @Override
-    public void registrarPrecioCorrespondiente(BigDecimal costos_notariales, BigDecimal registros_publicos, BigDecimal costos_transaccion, int id_propiedad, int id_moneda) {
-        pcR.registrarPrecioCorrespondiente(costos_notariales,registros_publicos,costos_transaccion, id_propiedad, id_moneda);
+    public PrecioCorrespondiente registrarPrecioCorrespondiente(BigDecimal costos_notariales, BigDecimal registros_publicos, BigDecimal costos_transaccion, int id_propiedad, int id_moneda) {
+
+        pcR.registrarPrecioCorrespondiente(costos_notariales, registros_publicos, costos_transaccion, id_propiedad, id_moneda);
+
+
+        List<PrecioCorrespondiente> lista = pcR.buscarUltimoPorPropiedad(id_propiedad);
+
+        if (!lista.isEmpty()) {
+            return lista.get(0);
+        }
+
+        return null;
     }
 }

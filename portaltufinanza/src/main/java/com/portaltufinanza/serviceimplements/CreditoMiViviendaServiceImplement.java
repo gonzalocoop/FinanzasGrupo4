@@ -18,9 +18,7 @@ public class CreditoMiViviendaServiceImplement implements ICreditoMiViviendaServ
     private ICreditoMiViviendaRepository cmvR;
 
     @Override
-    public void insert(CreditoMiVivienda credito) {
-        cmvR.save(credito);
-    }
+    public CreditoMiVivienda insert(CreditoMiVivienda credito) { return cmvR.save(credito); }
 
     @Override
     public List<CreditoMiVivienda> list() {

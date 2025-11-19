@@ -68,9 +68,13 @@ public class PrecioCorrespondienteController {
             return m.map(x, PrecioCorrespondienteDTO.class);
         }).collect(Collectors.toList());
     }
+
     @PostMapping("/generarpreciocorrespondiente")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
-    public void registrarPrecioCorrespondiente(@RequestParam BigDecimal costos_notariales, @RequestParam BigDecimal registros_publicos, @RequestParam BigDecimal costos_transaccion,@RequestParam int idPropiedad, @RequestParam int idMoneda) {
-        pcS.registrarPrecioCorrespondiente(costos_notariales,registros_publicos,costos_transaccion,idPropiedad, idMoneda);
+    public PrecioCorrespondienteDTO registrarPrecioCorrespondiente(@RequestParam BigDecimal costos_notariales, @RequestParam BigDecimal registros_publicos, @RequestParam BigDecimal costos_transaccion,@RequestParam int idPropiedad, @RequestParam int idMoneda) {
+        PrecioCorrespondiente pc = pcS.registrarPrecioCorrespondiente(costos_notariales,registros_publicos,costos_transaccion,idPropiedad, idMoneda);
+        ModelMapper m = new ModelMapper();
+        return m.map(pc, PrecioCorrespondienteDTO.class);
     }
+
 }
