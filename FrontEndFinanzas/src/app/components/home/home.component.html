@@ -1,20 +1,53 @@
-<div class="page-container">
-  <div class="menu-header">
-    <h1>Bienvenido a tu Portal</h1>
-    <p>Selecciona una opción para comenzar</p>
-  </div>
+<div class="dashboard-container">
+  
+  <header class="dashboard-header">
+    <h1>¡Hola de nuevo, <span class="highlight">{{ selectedUser }}</span>! 👋</h1>
+    <p>Bienvenido al <strong>Portal Tu Finanza</strong>. ¿Qué te gustaría hacer hoy?</p>
+  </header>
 
-  <div class="menu-grid">
-    <div class="menu-card" routerLink="/creditoMiVivienda">
-      <div class="card-icon">📄</div>
-      <h3>Listar Mis Créditos</h3>
-      <p>Ver y gestionar tus créditos Mivivienda existentes.</p>
-    </div>
+  <div class="dashboard-grid">
+    
+    <a routerLink="/creditoMiVivienda" class="action-card card-blue">
+      <div class="icon-wrapper">
+        <mat-icon>description</mat-icon>
+      </div>
+      <div class="card-content">
+        <h3>Mis Créditos</h3>
+        <p>Consulta el estado, cronogramas y detalles de tus créditos registrados.</p>
+      </div>
+      <div class="card-action">
+        <span class="action-text">Ver lista</span>
+        <mat-icon>arrow_forward</mat-icon>
+      </div>
+    </a>
 
-    <div class="menu-card" routerLink="/usuario/nueva-propiedad">
-      <div class="card-icon">🏠</div>
-      <h3>Registrar Nueva Propiedad</h3>
-      <p>Inicia el flujo para registrar una propiedad y su crédito asociado.</p>
-    </div>
+    <a routerLink="/seleccionar-propiedad" class="action-card card-yellow">
+      <div class="icon-wrapper">
+        <mat-icon>add_home</mat-icon>
+      </div>
+      <div class="card-content">
+        <h3>Solicitar Crédito</h3>
+        <p>Calcula y registra un nuevo crédito Mivivienda seleccionando una propiedad.</p>
+      </div>
+      <div class="card-action">
+        <span class="action-text">Comenzar</span>
+        <mat-icon>arrow_forward</mat-icon>
+      </div>
+    </a>
+
+    <a routerLink="/perfil" class="action-card card-gray">
+      <div class="icon-wrapper">
+        <mat-icon>person</mat-icon>
+      </div>
+      <div class="card-content">
+        <h3>Mi Perfil</h3>
+        <p>Actualiza tus datos personales y revisa tu información de cuenta.</p>
+      </div>
+      <div class="card-action">
+        <span class="action-text">Ir al perfil</span>
+        <mat-icon>arrow_forward</mat-icon>
+      </div>
+    </a>
+
   </div>
 </div>

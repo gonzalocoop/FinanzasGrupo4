@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-// 1. Importa 'Router' (además de RouterModule y RouterOutlet)
+
 import { RouterModule, RouterOutlet, Router } from '@angular/router'; 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,18 +21,18 @@ export class App {
 
   role: string = '';
   
-  // 2. Inyecta el Router en el constructor
+ 
   constructor(
     private lS: LoginService,
-    private router: Router // <-- AÑADE ESTO
+    private router: Router
   ) {}
 
   cerrar() {
     sessionStorage.clear();
     localStorage.clear();
     
-    // 3. Añade la navegación al login
-    this.router.navigate(['/iniciosesion']); // <-- AÑADE ESTO
+  
+    this.router.navigate(['/iniciosesion']);
   }
 
   verificar() {

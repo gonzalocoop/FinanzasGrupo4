@@ -11,7 +11,7 @@ const base_url = environment.base;
   providedIn: 'root'
 })
 export class UsuariosService {
-  private url = `${base_url}/usuarios`; // Endpoint del backend
+  private url = `${base_url}/usuarios`;
 
   constructor(private http: HttpClient) { }
 
@@ -19,10 +19,15 @@ export class UsuariosService {
     return this.http.get<Usuarios[]>(this.url);
   }
 
-  // Método para buscar un usuario por su username
+
   findByUsername(username: string): Observable<Usuarios | undefined> {
     return this.list().pipe(
       map(usuarios => usuarios.find(u => u.username === username))
     );
+  }
+
+ 
+  update(u: Usuarios): Observable<any> {
+    return this.http.put(this.url, u);
   }
 }

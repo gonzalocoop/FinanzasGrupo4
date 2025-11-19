@@ -1,53 +1,50 @@
 <div class="list-container">
   
   <div class="list-header">
-    <h1>Gestión de Propiedades (Admin)</h1>
-    <button mat-flat-button color="primary" routerLink="/admin/propiedades/nueva">
+    <h1>{{ titulo }}</h1>
+    <button *ngIf="!isUserFlow" mat-flat-button color="primary" routerLink="/admin/propiedades/nueva">
       <mat-icon>add</mat-icon>
       Registrar Nueva Propiedad
     </button>
   </div>
 
-  <table mat-table [dataSource]="listaPropiedades" class="property-table mat-elevation-z8">
-
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
-      <td mat-cell *matCellDef="let p"> {{p.id_propiedad}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="tipo">
-      <th mat-header-cell *matHeaderCellDef> Tipo de Propiedad </th>
-      <td mat-cell *matCellDef="let p"> {{p.tipo_propiedad}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="direccion">
-      <th mat-header-cell *matHeaderCellDef> Dirección </th>
-      <td mat-cell *matCellDef="let p"> {{p.direccion}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="precio">
-      <th mat-header-cell *matHeaderCellDef> Precio (S/.) </th>
-      <td mat-cell *matCellDef="let p"> {{p.precio_propiedad | number:'1.2-2'}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="acciones">
-      <th mat-header-cell *matHeaderCellDef> Acciones </th>
-      <td mat-cell *matCellDef="let p" class="action-buttons">
-        <button mat-icon-button color="primary" [routerLink]="['/admin/propiedades/editar/', p.id_propiedad]" title="Editar">
-          <mat-icon>edit</mat-icon>
+  <div class="property-grid" *ngIf="listaPropiedades.length > 0; else noPropiedades">
+    
+    <div class="property-card" *ngFor="let p of listaPropiedades">
+      
+      <img [src]="p.url_imagen || 'assets/default-property.png'" alt="Propiedad" class="property-card-image">
+      
+      <div class="property-card-content">
+        <span class="property-card-tipo">{{ p.tipo_propiedad }}</span>
+        <h3 class="property-card-direccion">{{ p.direccion }}</h3>
+        <div class="property-card-precio">
+           {{ p.precio_propiedad | number:'1.2-2' }}
+        </div>
+      </div>
+      
+      <div class="property-card-actions">
+        
+        <div *ngIf="!isUserFlow" class="admin-actions">
+          <button mat-icon-button color="primary" [routerLink]="['/admin/propiedades/editar/', p.id_propiedad]" title="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="eliminar(p.id_propiedad)" title="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        
+        <button *ngIf="isUserFlow" mat-flat-button color="primary" class="select-button" [routerLink]="['/ingresar-costos/', p.id_propiedad]">
+          Seleccionar
         </button>
-        <button mat-icon-button color="warn" (click)="eliminar(p.id_propiedad)" title="Eliminar">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+      </div>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </div>
+  </div>
 
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="5">No hay propiedades registradas.</td>
-    </tr>
-  </table>
+  <ng-template #noPropiedades>
+    <div class="no-properties-message">
+      No hay propiedades registradas.
+    </div>
+  </ng-template>
 
 </div>

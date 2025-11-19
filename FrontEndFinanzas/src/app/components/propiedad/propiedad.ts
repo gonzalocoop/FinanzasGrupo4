@@ -1,12 +1,9 @@
-// src/app/components/propiedad/propiedad.ts (CORREGIDO)
-
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { Propiedad as PropiedadModel } from '../../models/Propiedad'; // <-- CORRECCIÓN 1: Alias
+import { RouterModule, ActivatedRoute } from '@angular/router'; // <-- Añade ActivatedRoute
+import { Propiedad as PropiedadModel } from '../../models/Propiedad';
 import { PropiedadService } from '../../services/propiedad.service';
 
-// Importa los módulos de Material para los botones y la tabla
 import { MatIconModule } from '@angular/material/icon'; 
 import { MatButtonModule } from '@angular/material/button'; 
 import { MatTableModule } from '@angular/material/table';
@@ -26,18 +23,29 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   templateUrl: './propiedad.html',
   styleUrls: ['./propiedad.css'] 
 })
-export class Propiedad implements OnInit { // <-- El componente se sigue llamando 'Propiedad'
+export class Propiedad implements OnInit {
   
-  listaPropiedades: PropiedadModel[] = []; // <-- CORRECCIÓN 2: Usar el alias
-  displayedColumns: string[] = ['id', 'tipo', 'direccion', 'precio', 'acciones'];
+  listaPropiedades: PropiedadModel[] = [];
+  displayedColumns: string[] = ['imagen', 'tipo', 'direccion', 'precio', 'acciones']; 
+  
+  isUserFlow: boolean = false; 
+  titulo: string = 'Gestión de Propiedades (Admin)'; 
 
   constructor(
     private pS: PropiedadService,
     private snackBar: MatSnackBar,
+    private route: ActivatedRoute, 
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit(): void {
+    
+    if (this.route.snapshot.data['isUserFlow']) {
+      this.isUserFlow = true;
+      this.titulo = 'Paso 1: Selecciona una Propiedad';
+      this.displayedColumns = ['imagen', 'tipo', 'direccion', 'precio', 'seleccionar']; 
+    }
+
     this.cargarPropiedades();
   }
 
@@ -53,7 +61,7 @@ export class Propiedad implements OnInit { // <-- El componente se sigue llamand
     if (confirm('¿Está seguro de que desea eliminar esta propiedad?')) {
       this.pS.delete(id).subscribe(() => {
         this.snackBar.open('Propiedad eliminada.', 'Cerrar', { duration: 3000 });
-        this.cargarPropiedades(); // Recarga la lista
+        this.cargarPropiedades();
       });
     }
   }

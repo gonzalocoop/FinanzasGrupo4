@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Propiedad } from '../models/Propiedad'; // Importa el modelo
+import { Propiedad } from '../models/Propiedad';
 import { Observable } from 'rxjs';
 
 const base_url = environment.base;
@@ -10,16 +10,16 @@ const base_url = environment.base;
   providedIn: 'root'
 })
 export class PropiedadService {
-  private url = `${base_url}/propiedad`; // Endpoint del backend
+  private url = `${base_url}/propiedad`; 
 
   constructor(private http: HttpClient) { }
 
-  // Insertar (Usado por Admin y Usuario)
+ 
   insert(p: Propiedad): Observable<Propiedad> {
     return this.http.post<Propiedad>(this.url, p);
   }
 
-  // --- Métodos para el Admin ---
+ 
   list(): Observable<Propiedad[]> {
     return this.http.get<Propiedad[]>(this.url);
   }

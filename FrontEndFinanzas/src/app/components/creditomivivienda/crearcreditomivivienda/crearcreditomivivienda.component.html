@@ -12,67 +12,62 @@
     </div>
 
     <div class="form-group">
-      <label for="moneda">Moneda</label>
-      <select id="moneda" formControlName="moneda">
-        <option [ngValue]="null" disabled>Selecciona la moneda</option>
-        <option *ngFor="let m of listaMonedas" [value]="m.id_moneda">
-          {{ m.nombre_moneda }}
-        </option>
-      </select>
-    </div>
-    <div class="form-error" *ngIf="form.controls['moneda'].invalid && form.controls['moneda'].touched">
-      <span *ngIf="form.controls['moneda'].hasError('required')">Requerido.</span>
-    </div>
-
-    <div class="form-group">
-      <label for="cuota_inicial">Monto de Cuota Inicial</label>
-      <input type="number" step="0.01" id="cuota_inicial" placeholder="Ej. 20000" formControlName="cuota_inicial" />
-    </div>
-    <div class="form-error" *ngIf="form.controls['cuota_inicial'].invalid && form.controls['cuota_inicial'].touched">
-      <span *ngIf="form.controls['cuota_inicial'].hasError('required')">Requerido.</span>
-    </div>
-
-    <div class="form-group">
-      <label for="tasa_interes">Tasa de Interés (Ej. 12% = 0.12)</label>
-      <input type="number" step="0.001" id="tasa_interes" placeholder="Ej. 0.12" formControlName="tasa_interes" />
+      <label for="tasa_interes">Tasa de Interés (Ej. 12)</label>
+      <input type="number" id="tasa_interes" placeholder="Ej. 12" formControlName="tasa_interes" />
     </div>
     <div class="form-error" *ngIf="form.controls['tasa_interes'].invalid && form.controls['tasa_interes'].touched">
       <span *ngIf="form.controls['tasa_interes'].hasError('required')">Requerido.</span>
     </div>
 
     <div class="form-group">
+      <label for="cok">COK (Tasa para VAN) (Ej. 5)</label>
+      <input type="number" id="cok" placeholder="Ej. 5" formControlName="cok" />
+    </div>
+    <div class="form-error" *ngIf="form.controls['cok'].invalid && form.controls['cok'].touched">
+      <span>El COK es requerido.</span>
+    </div>
+
+    <div class="form-group">
+      <label for="numero_cuotas">Número de Cuotas (sin contar meses de gracia)</label>
+      <input type="number" id="numero_cuotas" placeholder="Ej. 12" formControlName="numero_cuotas" />
+    </div>
+    <div class="form-error" *ngIf="form.controls['numero_cuotas'].invalid && form.controls['numero_cuotas'].touched">
+      <span>El número de cuotas es requerido.</span>
+    </div>
+
+    <div class="form-group">
       <label for="tipo_tasa">Tipo de Tasa</label>
       <select id="tipo_tasa" formControlName="tipo_tasa">
-        <option value="NOMINAL">Nominal</option>
-        <option value="EFECTIVA">Efectiva</option>
+        <option value="Nominal">Nominal</option>
+        <option value="Efectiva">Efectiva</option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="peridiocidad_tasa">Peridiocidad Tasa</label>
       <select id="peridiocidad_tasa" formControlName="peridiocidad_tasa">
-        <option value="DIARIA">Diaria</option>
-        <option value="MENSUAL">Mensual</option>
-        <option valueD="ANUAL">Anual</option>
+        <option value="Diaria">Diaria</option>
+        <option value="Mensual">Mensual</option>
+        <option value="Anual">Anual</option>
       </select>
     </div>
 
     <div class="form-group">
-      <label for="tipo_capitalizacion">Capitalización</label>
+      <label for="tipo_capitalizacion">Capitalización (si la tasa es Nominal)</label>
       <select id="tipo_capitalizacion" formControlName="tipo_capitalizacion">
-        <option value="NINGUNA">Ninguna</option>
-        <option value="DIARIA">Diaria</option>
-        <option value="MENSUAL">Mensual</option>
-        <option value="ANUAL">Anual</option>
+        <option value="Nulo">Ninguna</option>
+        <option value="Diaria">Diaria</option>
+        <option value="Mensual">Mensual</option>
+        <option value="Anual">Anual</option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="tipo_gracia">Periodo de Gracia</label>
       <select id="tipo_gracia" formControlName="tipo_gracia">
-        <option value="NINGUNO">Ninguno</option>
-        <option value="PARCIAL">Parcial</option>
-        <option value="TOTAL">Total</option>
+        <option value="Ninguno">Ninguno</option>
+        <option value="Parcial">Parcial</option>
+        <option value="Total">Total</option>
       </select>
     </div>
 

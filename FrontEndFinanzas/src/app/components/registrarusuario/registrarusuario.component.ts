@@ -30,11 +30,11 @@ import { map, of } from 'rxjs';
 export class RegistrarusuarioComponent implements OnInit {
   form: FormGroup= new FormGroup({});
   usuario: Usuarios = new Usuarios();
-  id: number = 0; // Para la lógica de edición/validación
+  id: number = 0; 
 
-  // El ID del rol 'USUARIO' en tu base de datos
-  // CAMBIA ESTE NÚMERO SI ES DIFERENTE (ej. 1, 3, etc.)
-  readonly ID_ROL_USUARIO: number = 3; 
+  
+  // CAMBIAR ESTE NÚMERO SI ES DIFERENTE (ej. 1, 3, etc.)
+  readonly ID_ROL_USUARIO: number = 2; 
 
   constructor(
     private fb: FormBuilder,

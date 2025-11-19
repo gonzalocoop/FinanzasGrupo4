@@ -36,7 +36,7 @@ export class IniciosesionComponent implements OnInit{
     this.loginService.login(request).subscribe(
       (data: any) => {
         sessionStorage.setItem('token', data.jwttoken);
-        //Para guardar el login
+       
         localStorage.setItem("username",this.username);
 
         this.router.navigate(['homes']);

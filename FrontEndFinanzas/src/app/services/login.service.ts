@@ -20,19 +20,19 @@ export class LoginService {
       let token = sessionStorage.getItem('token');
       return token != null;
     }
-    return false; // En SSR no hay acceso a sessionStorage
+    return false; 
   }
 
   showRole() {
     if (typeof window !== 'undefined' && window.sessionStorage) {
       let token = sessionStorage.getItem('token');
       if (!token) {
-        return null; // Si no hay token, retorna null o lo que prefieras
+        return null; 
       }
       const helper = new JwtHelperService();
       const decodedToken = helper.decodeToken(token);
       return decodedToken?.role;
     }
-    return null; // En SSR, no se puede acceder a sessionStorage
+    return null; 
   }
 }

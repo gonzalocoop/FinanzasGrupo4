@@ -1,22 +1,18 @@
-// src/app/app.routes.ts (Actualizado para tu nueva estructura)
 import { Routes } from '@angular/router';
-
-// Componentes del flujo principal
 import { HomeComponent } from './components/home/home.component';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { IniciosesionComponent } from './components/iniciosesion/iniciosesion.component';
 import { RegistrarusuarioComponent } from './components/registrarusuario/registrarusuario.component';
 
-// Componentes de Propiedad
-import { Propiedad } from './components/propiedad/propiedad'; // LISTA de Propiedades (Admin)
-import { CrearpropiedadComponent } from './components/propiedad/crearpropiedad/crearpropiedad.component'; // FORM de Propiedad
-
-// Componentes de Crédito
-import { Creditomivivienda } from './components/creditomivivienda/creditomivivienda'; // LISTA de Créditos (User/Admin)
-import { CrearcreditomiviviendaComponent } from './components/creditomivivienda/crearcreditomivivienda/crearcreditomivivienda.component'; // FORM de Crédito
-
-import { seguridadGuard } from './guard/seguridad.guard'; // Tu guard existente
-
+import { Propiedad } from './components/propiedad/propiedad'; // LISTA
+import { CrearpropiedadComponent } from './components/propiedad/crearpropiedad/crearpropiedad.component'; // FORMULARIO
+import { CostosComponent } from './components/propiedad/costos/costos.component';
+import { Creditomivivienda } from './components/creditomivivienda/creditomivivienda'; // LISTA
+import { CrearcreditomiviviendaComponent } from './components/creditomivivienda/crearcreditomivivienda/crearcreditomivivienda.component'; // FORMULARIO
+import { CreditoDetalleComponent } from './components/creditomivivienda/creditodetalle/creditodetalle.component';
+import { seguridadGuard } from './guard/seguridad.guard'; 
+import { Cronogramapagos } from './components/cronogramapagos/cronogramapagos'; 
+import { PerfilComponent } from './components/perfil/perfil.component';
 export const routes: Routes = [
     // --- Rutas Públicas ---
     { path: '', redirectTo: '/landing', pathMatch: 'full' },
@@ -24,56 +20,67 @@ export const routes: Routes = [
     { path: 'iniciosesion', component: IniciosesionComponent },
     { path: 'registrarusuario', component: RegistrarusuarioComponent },
 
-    // --- Rutas de USUARIO (Protegidas) ---
+    // --- Rutas de USUARIO ---
     {
-        path: 'homes', // Menú de Usuario
+        path: 'homes', 
         component: HomeComponent,
         canActivate: [seguridadGuard] 
     },
     {
-        path:'usuario/nueva-propiedad', // Flujo de Usuario: Crear Propiedad (Paso 1)
-        component: CrearpropiedadComponent,
-        canActivate: [seguridadGuard],
-        data: { isUserFlow: true } 
-    },
-    {
-        path:'creditoMiVivienda', // Flujo de Usuario: Listar Créditos
-        component: Creditomivivienda, // <-- Usa la LISTA
+        path: 'perfil', 
+        component: PerfilComponent, 
         canActivate: [seguridadGuard] 
     },
     {
-        path: 'creditoMiVivienda/nuevo/:idPropiedad', // Flujo de Usuario: Crear Crédito (Paso 2)
-        component: CrearcreditomiviviendaComponent, // <-- Usa el FORM
+        path:'seleccionar-propiedad',
+        component: Propiedad, 
+        canActivate: [seguridadGuard],
+        data: { isUserFlow: true } 
+    },
+   {
+    // Esta es la ruta a la que te lleva el botón "Seleccionar" de la lista
+    path:'ingresar-costos/:idPropiedad', 
+    component: CostosComponent, // <-- ¡AQUÍ USAMOS EL NUEVO COMPONENTE!
+    canActivate: [seguridadGuard]
+    // Ya no necesitamos 'data: { isUserFlow: true }' porque este componente es solo para eso.
+},
+    {
+        path:'creditoMiVivienda',
+        component: Creditomivivienda, 
+        canActivate: [seguridadGuard] 
+    },
+    {
+        path: 'creditoMiVivienda/nuevo/:idPrecioCorrespondiente', 
+        component: CrearcreditomiviviendaComponent, 
         canActivate: [seguridadGuard],
         data: { isUserFlow: true }
     },
-
-    // --- Rutas de ADMIN (Protegidas) ---
     {
-        path: 'admin/propiedades', // Admin: VER lista de propiedades
-        component: Propiedad,
-        canActivate: [seguridadGuard] // (Aquí podrías usar tu adminGuard si lo creas)
-    },
-    {
-        path: 'admin/propiedades/nueva', // Admin: REGISTRAR propiedad
-        component: CrearpropiedadComponent,
+        path: 'credito/:idCredito/cronograma', 
+        component: Cronogramapagos, 
         canActivate: [seguridadGuard]
     },
     {
-        path: 'admin/propiedades/editar/:id', // Admin: ACTUALIZAR propiedad
-        component: CrearpropiedadComponent,
-        canActivate: [seguridadGuard]
-    },
-    {
-        path: 'admin/creditos', // Admin: VER lista de créditos
-        component: Creditomivivienda, // <-- Usa la LISTA
-        canActivate: [seguridadGuard]
-    },
-    {
-        path: 'admin/creditos/editar/:id', // Admin: ACTUALIZAR crédito
-        component: CrearcreditomiviviendaComponent, // <-- Usa el FORM
+        path: 'credito/:idCredito/detalle', 
+        component: CreditoDetalleComponent, 
         canActivate: [seguridadGuard]
     },
     
-    // ... (resto de tus rutas)
+    {
+        path: 'admin/propiedades', 
+        component: Propiedad,
+        canActivate: [seguridadGuard] 
+    },
+    {
+        path: 'admin/propiedades/nueva', 
+        component: CrearpropiedadComponent, 
+        canActivate: [seguridadGuard]
+    },
+    {
+        path: 'admin/propiedades/editar/:id', 
+        component: CrearpropiedadComponent, 
+        canActivate: [seguridadGuard]
+    },
+    
+    
 ];

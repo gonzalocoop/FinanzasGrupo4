@@ -1,10 +1,9 @@
-// src/app/app.config.server.ts (CORREGIDO)
 
 import { mergeApplicationConfig, ApplicationConfig } from '@angular/core';
 import { provideServerRendering } from '@angular/platform-server';
-import { appConfig } from './app.config'; // Importa tu config principal
+import { appConfig } from './app.config'; 
 
-// Esta es la configuración SÓLO para el servidor
+
 const serverConfig: ApplicationConfig = {
   providers: [
     provideServerRendering()

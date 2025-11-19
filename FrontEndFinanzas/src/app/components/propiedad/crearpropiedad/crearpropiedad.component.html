@@ -20,49 +20,18 @@
     </div>
 
     <div class="form-group">
-      <label for="precio_propiedad">Precio de la Propiedad</label>
+      <label for="precio_propiedad">Precio de la Propiedad (S/.)</label>
       <input type="number" step="0.01" id="precio_propiedad" placeholder="Ej. 150000" formControlName="precio_propiedad" />
     </div>
     <div class="form-error" *ngIf="form.controls['precio_propiedad'].invalid && form.controls['precio_propiedad'].touched">
       <span *ngIf="form.controls['precio_propiedad'].hasError('required')">El precio es requerido.</span>
+      <span *ngIf="form.controls['precio_propiedad'].hasError('min')">El precio debe ser positivo.</span>
     </div>
 
     <div class="form-group">
-      <label for="tipo_moneda">Moneda del Precio</label>
-      <select id="tipo_moneda" formControlName="tipo_moneda">
-        <option [ngValue]="null" disabled>Selecciona la moneda</option>
-        <option *ngFor="let m of listaMonedas" [value]="m.id_moneda"> {{ m.nombre_moneda }}
-        </option>
-      </select>
+      <label for="url_imagen">URL de la Imagen (Opcional)</label>
+      <input type="text" id="url_imagen" placeholder="https://ejemplo.com/foto.jpg" formControlName="url_imagen" />
     </div>
-    <div class="form-error" *ngIf="form.controls['tipo_moneda'].invalid && form.controls['tipo_moneda'].touched">
-      <span>La moneda es requerida.</span>
-    </div>
-
-    <div class="form-group">
-      <label for="costos_notariales">Costos Notariales</label>
-      <input type="number" step="0.01" id="costos_notariales" placeholder="Ej. 500" formControlName="costos_notariales" />
-    </div>
-    <div class="form-error" *ngIf="form.controls['costos_notariales'].invalid && form.controls['costos_notariales'].touched">
-      <span *ngIf="form.controls['costos_notariales'].hasError('required')">Este costo es requerido.</span>
-    </div>
-
-    <div class="form-group">
-      <label for="registros_publicos">Registros Públicos</label>
-      <input type="number" step="0.01" id="registros_publicos" placeholder="Ej. 150" formControlName="registros_publicos" />
-    </div>
-    <div class="form-error" *ngIf="form.controls['registros_publicos'].invalid && form.controls['registros_publicos'].touched">
-      <span>Este costo es requerido.</span>
-    </div>
-
-    <div class="form-group">
-      <label for="costos_transaccion">Costos de Transacción</label>
-      <input type="number" step="0.01" id="costos_transaccion" placeholder="Ej. 100" formControlName="costos_transaccion" />
-    </div>
-    <div class="form-error" *ngIf="form.controls['costos_transaccion'].invalid && form.controls['costos_transaccion'].touched">
-      <span>Este costo es requerido.</span>
-    </div>
-
 
     <div class="button-container">
       <button type="submit" class="btn-submit" [disabled]="form.invalid">{{ getBotonPrincipal() }}</button>

@@ -1,40 +1,63 @@
 <header class="navbar">
-    <div class="container">
-        <a href="#" class="nav-logo">Portal Tu Finanza</a>
-        <a routerLink="/iniciosesion"><div class="btn btn-nav">Iniciar Sesión</div></a>
+    <div class="container nav-container">
+        <a routerLink="/" class="nav-logo">
+            <mat-icon>account_balance</mat-icon> Portal Tu Finanza
+        </a>
+        <a routerLink="/iniciosesion" class="btn btn-nav">
+            <span>Iniciar Sesión</span>
+            <mat-icon>login</mat-icon>
+        </a>
     </div>
 </header>
 
 <main>
     <section class="hero">
+        <div class="hero-overlay"></div>
         <div class="container hero-content">
-            <h1>Bienvenido a Portal Tu Finanza</h1>
-            <p>La plataforma definitiva donde podrás valorar tus bonos, diseñada para facilitar todos tus análisis financieros.</p>
-            <a routerLink="/iniciosesion" class="btn btn-hero">Acceder al Portal</a>
+            <h1>Domina tus Finanzas con <br> <span class="highlight">Precisión y Rapidez</span></h1>
+            <p>La plataforma definitiva para valorar bonos y gestionar tus créditos. Análisis financiero profesional, simplificado para ti.</p>
+            <div class="hero-buttons">
+                <a routerLink="/iniciosesion" class="btn btn-hero">
+                    Comenzar Ahora <mat-icon>arrow_forward</mat-icon>
+                </a>
+                <a routerLink="/registrarusuario" class="btn btn-outline">
+                    Crear Cuenta
+                </a>
+            </div>
         </div>
     </section>
 
     <section class="features">
         <div class="container">
-            <h2>Análisis financiero simplificado</h2>
+            <div class="section-header">
+                <h2>¿Por qué elegirnos?</h2>
+                <p>Herramientas potentes diseñadas para simplificar tu vida financiera.</p>
+            </div>
+            
             <div class="features-grid">
                 
                 <div class="feature-card">
-                    <div class="feature-card-icon">📊</div>
+                    <div class="icon-box">
+                        <mat-icon>analytics</mat-icon>
+                    </div>
                     <h3>Valoración Precisa</h3>
-                    <p>Utiliza modelos de valoración estándar de la industria para obtener el precio y rendimiento (TIR) de tus bonos.</p>
+                    <p>Utiliza modelos de valoración estándar de la industria para obtener el precio exacto y el rendimiento (TIR) de tus bonos al instante.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-card-icon">📈</div>
-                    <h3>Reportes Instantáneos</h3>
-                    <p>Genera reportes claros y concisos sobre la estructura de tus flujos de caja, duración y convexidad.</p>
+                    <div class="icon-box">
+                        <mat-icon>table_chart</mat-icon>
+                    </div>
+                    <h3>Cronogramas Claros</h3>
+                    <p>Genera automáticamente tablas de amortización y cronogramas de pagos detallados para cualquier tipo de crédito Mivivienda.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-card-icon">🖥️</div>
+                    <div class="icon-box">
+                        <mat-icon>speed</mat-icon>
+                    </div>
                     <h3>Interfaz Intuitiva</h3>
-                    <p>Ingresa los datos de tus instrumentos de forma fácil y obtén resultados sin complicadas hojas de cálculo.</p>
+                    <p>Olvídate de las hojas de cálculo complejas. Ingresa tus datos en formularios sencillos y obtén resultados profesionales en segundos.</p>
                 </div>
 
             </div>
@@ -43,7 +66,10 @@
 </main>
 
 <footer class="footer">
-    <div class="container">
+    <div class="container footer-content">
+        <div class="footer-logo">
+            <mat-icon>account_balance</mat-icon> Portal Tu Finanza
+        </div>
         <p>&copy; 2025 Portal Tu Finanza. Todos los derechos reservados.</p>
     </div>
 </footer>
