@@ -1,22 +1,17 @@
-/* --- Fondo animado (Igual que en las otras pantallas) --- */
+/* --- Fondo Animado --- */
 @import url(https://fonts.googleapis.com/css?family=Exo:100);
-/* ... (puedes copiar los keyframes si quieres, o dejar que se hereden si están globales) ... */
-@-webkit-keyframes bg-scrolling-reverse { 100% { background-position: 50px 50px; } }
-@-moz-keyframes bg-scrolling-reverse { 100% { background-position: 50px 50px; } }
-@-o-keyframes bg-scrolling-reverse { 100% { background-position: 50px 50px; } }
-@keyframes bg-scrolling-reverse { 100% { background-position: 50px 50px; } }
-@-webkit-keyframes bg-scrolling { 0% { background-position: 50px 50px; } }
-@-moz-keyframes bg-scrolling { 0% { background-position: 50px 50px; } }
-@-o-keyframes bg-scrolling { 0% { background-position: 50px 50px; } }
-@keyframes bg-scrolling { 0% { background-position: 50px 50px; } }
 
 :host {
   display: block;
   padding: 3rem;
   background-color: var(--color-fondo-alternativo, #f4f4f4);
   min-height: 100vh;
+  /* Tu fondo animado */
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
+  animation: bg-scrolling-reverse 0.92s infinite linear;
 }
 
+/* Spinner */
 .spinner-container {
   display: flex;
   justify-content: center;
@@ -24,77 +19,153 @@
   height: 80vh;
 }
 
+/* Contenedor Central */
 .detalle-container {
   max-width: 900px;
   margin: 0 auto;
 }
 
+/* Encabezado de Página */
 .detalle-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 2px solid #f0f0f0;
 }
 
 .detalle-header h1 {
   margin: 0;
-  color: var(--color-texto-principal, #212121);
+  color: #212121;
+  font-weight: 800;
+  font-size: 2.2rem;
+  text-shadow: 2px 2px 0px rgba(255,255,255,0.5);
 }
 
+.highlight {
+  color: #E53935;
+}
+
+/* --- TARJETA PRINCIPAL --- */
 .detalle-card {
   background-color: #FFFFFF;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
-  padding: 2.5rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  border-top: 6px solid #E53935; /* Toque de marca */
 }
 
-.detalle-section {
-  margin-bottom: 2.5rem;
-}
-
-.detalle-section:last-child {
-  margin-bottom: 0;
-}
-
+/* Secciones */
 .detalle-section h2 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  color: var(--color-primario, #E53935);
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid #eee;
+  color: #E53935; /* Rojo corporativo */
   margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
+.separator {
+  height: 1px;
+  background-color: #eee;
+  margin: 2.5rem 0;
+}
+
+/* Grids de Información */
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
 }
 
+.three-cols {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.two-cols {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Items de Información */
 .info-item {
   display: flex;
   flex-direction: column;
 }
 
 .info-label {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--color-texto-secundario, #424242);
-  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #757575;
+  margin-bottom: 0.4rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 .info-value {
   font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--color-texto-principal, #212121);
+  font-weight: 600;
+  color: #212121;
 }
 
-.info-value.info-importante {
+/* --- Estilos Especiales para Resumen Financiero --- */
+.big-item .info-value {
+  font-size: 1.4rem;
   font-weight: 700;
-  font-size: 1.25rem;
-  color: #0d47a1;
+}
+
+.highlight-green {
+  color: #2E7D32; /* Verde para bonos/descuentos */
+}
+
+.total-item .info-value {
+  color: #E53935; /* Rojo para el monto total */
+  font-size: 1.8rem;
+}
+
+/* --- Estilos para Rentabilidad --- */
+.positive { color: #2E7D32; } /* Verde */
+.negative { color: #D32F2F; } /* Rojo */
+
+/* --- Sección Propiedad con Imagen --- */
+.propiedad-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.propiedad-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .detalle-card {
+    padding: 2rem;
+  }
+  .info-grid, .three-cols, .two-cols {
+    grid-template-columns: 1fr 1fr; /* 2 columnas en tablet */
+  }
+  .propiedad-content {
+    flex-direction: column;
+  }
+  .propiedad-img {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .info-grid, .three-cols, .two-cols {
+    grid-template-columns: 1fr; /* 1 columna en móvil */
+  }
+  .detalle-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
 }

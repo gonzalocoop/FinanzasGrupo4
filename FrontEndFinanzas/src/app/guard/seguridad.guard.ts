@@ -1,17 +1,23 @@
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
 import { LoginService } from '../services/login.service';
-import { inject } from '@angular/core';
+import { inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
-export const seguridadGuard= (
+export const seguridadGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
-    const lService=inject(LoginService)
-    const router=inject(Router)
-    const rpta=lService.verificar();
+    const lService = inject(LoginService);
+    const router = inject(Router);
+    const platformId = inject(PLATFORM_ID);   
+    if (!isPlatformBrowser(platformId)) {
+      return true;
+    }
+    const rpta = lService.verificar();
     if(!rpta){
       router.navigate(['/iniciosesion']);
       return false;
     }
     return rpta;
+
 };

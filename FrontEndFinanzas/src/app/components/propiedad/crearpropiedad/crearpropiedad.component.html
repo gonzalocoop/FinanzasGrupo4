@@ -18,14 +18,14 @@
     <div class="form-error" *ngIf="form.controls['direccion'].invalid && form.controls['direccion'].touched">
       <span *ngIf="form.controls['direccion'].hasError('required')">La dirección es requerida.</span>
     </div>
-
     <div class="form-group">
       <label for="precio_propiedad">Precio de la Propiedad (S/.)</label>
       <input type="number" step="0.01" id="precio_propiedad" placeholder="Ej. 150000" formControlName="precio_propiedad" />
     </div>
     <div class="form-error" *ngIf="form.controls['precio_propiedad'].invalid && form.controls['precio_propiedad'].touched">
       <span *ngIf="form.controls['precio_propiedad'].hasError('required')">El precio es requerido.</span>
-      <span *ngIf="form.controls['precio_propiedad'].hasError('min')">El precio debe ser positivo.</span>
+      <span *ngIf="form.controls['precio_propiedad'].hasError('min')">El precio mínimo es S/. 58,000.</span>
+      <span *ngIf="form.controls['precio_propiedad'].hasError('max')">El precio máximo es S/. 419,600.</span>
     </div>
 
     <div class="form-group">

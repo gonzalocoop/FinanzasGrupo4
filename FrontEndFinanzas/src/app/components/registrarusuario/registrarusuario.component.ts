@@ -56,7 +56,7 @@ export class RegistrarusuarioComponent implements OnInit {
       hdni: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8), Validators.pattern('^[0-9]*$')]],
       hedad: [null, [Validators.required, Validators.min(18), Validators.max(100)]],
       hestado_civil: [null, Validators.required],
-      hingreso_mensual: [null, [Validators.required, Validators.min(0)]],
+      hingreso_mensual: [null, [Validators.required, Validators.min(1500)]],
       
    
       hcorreo: ['', [Validators.required, Validators.pattern(/^[^@]+@[^@]+\.[^@]+$/)]],

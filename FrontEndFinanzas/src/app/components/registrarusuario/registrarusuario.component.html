@@ -53,6 +53,7 @@
     <div class="form-error" *ngIf="form.controls['hingreso_mensual'].invalid && form.controls['hingreso_mensual'].touched">
       <span *ngIf="form.controls['hingreso_mensual'].hasError('required')">El ingreso es requerido.</span>
       <span *ngIf="form.controls['hingreso_mensual'].hasError('min')">El ingreso no puede ser negativo.</span>
+      <span *ngIf="form.controls['hingreso_mensual'].hasError('min')">El ingreso mínimo debe ser S/. 1500.</span>
     </div>
 
     <div class="form-group">
