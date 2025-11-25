@@ -31,7 +31,12 @@ export class CrearpropiedadComponent implements OnInit {
     this.form = this.fb.group({
       tipo_propiedad: ['', Validators.required],
       direccion: ['', Validators.required],
-      precio_propiedad: [null, [Validators.required, Validators.min(1)]],
+      precio_propiedad: [null, [
+          Validators.required, 
+          Validators.min(58000), 
+          Validators.max(419600),
+          
+      ]],
       url_imagen: [''] 
     });
 

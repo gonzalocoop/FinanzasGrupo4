@@ -14,7 +14,7 @@ export class CreditomiviviendaService {
 
   constructor(private http: HttpClient) { }
 
-  // --- REGISTRO (Corregido) ---
+  
   registrarCreditoMiVivienda(
     creditoData: any, 
     idPrecioCorrespondiente: number,
@@ -34,11 +34,11 @@ export class CreditomiviviendaService {
       .set('idPrecioCorrespondiente', idPrecioCorrespondiente.toString())
       .set('idUsuario', idUsuario.toString());
 
-    // El backend devuelve 'void', por eso esperamos 'text'
-    return this.http.post<any>(`${this.url}/generarcreditovacio`, null, { params: params, responseType: 'text' as 'json' });
+    // IMPORTANTE: responseType: 'text'
+    return this.http.post(`${this.url}/generarcreditovacio`, null, { params: params, responseType: 'text' });
   }
   
-  // --- LISTAR Y CRUD (Sin cambios) ---
+  // --- LISTAR Y CRUD (Estándar, esperan JSON) ---
   list(): Observable<CreditoMiVivienda[]> {
     return this.http.get<CreditoMiVivienda[]>(this.url);
   }
@@ -55,33 +55,27 @@ export class CreditomiviviendaService {
     return this.http.delete(`${this.url}/${id}`);
   }
 
-  // --- MÉTODOS DE CÁLCULO (Corregidos) ---
-  
-  // 1. Generar TEM (devuelve 'void')
+ 
   generarTEM(id_credito: number): Observable<any> {
     let params = new HttpParams().set('id_credito', id_credito.toString());
-    // Añadimos responseType: 'text'
-    return this.http.post(`${this.url}/generartem`, null, { params: params, responseType: 'text' as 'json' });
+    return this.http.post(`${this.url}/generartem`, null, { params: params, responseType: 'text' });
   }
   
-  // 2. Generar Cronograma (devuelve String)
+  // 2. Generar Cronograma
   generarCronograma(id_credito: number): Observable<any> {
     let params = new HttpParams().set('id_credito', id_credito.toString());
-    // Añadimos responseType: 'text'
-    return this.http.post(`${this.url}/generarcronograma`, null, { params: params, responseType: 'text' as 'json' });
+    return this.http.post(`${this.url}/generarcronograma`, null, { params: params, responseType: 'text' });
   }
   
-  // 3. Calcular VAN y TIR (devuelve String)
+  // 3. Calcular VAN y TIR
   calcularVanTir(id_credito: number): Observable<any> {
     let params = new HttpParams().set('id_credito', id_credito.toString());
-    // Añadimos responseType: 'text'
-    return this.http.post(`${this.url}/calcularvanytir`, null, { params: params, responseType: 'text' as 'json' });
+    return this.http.post(`${this.url}/calcularvanytir`, null, { params: params, responseType: 'text' });
   }
   
-  // 4. Calcular TEA y TCEA (devuelve 'void')
+  // 4. Calcular TEA y TCEA
   convertirTasasAnuales(id_credito: number): Observable<any> {
     let params = new HttpParams().set('id_credito', id_credito.toString());
-    // Añadimos responseType: 'text'
-    return this.http.put(`${this.url}/calcularteatcea`, null, { params: params, responseType: 'text' as 'json' });
+    return this.http.put(`${this.url}/calcularteatcea`, null, { params: params, responseType: 'text' });
   }
 }

@@ -35,19 +35,45 @@ export class CrearcreditomiviviendaComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
-  ngOnInit(): void {
-   
+ ngOnInit(): void {
     this.form = this.fb.group({
       fecha_inicio: [new Date().toISOString().split('T')[0], Validators.required],
+     
       tipo_tasa: ['Nominal', Validators.required],
-      tasa_interes: [null, [Validators.required, Validators.min(0)]], 
-      cok: [null, [Validators.required, Validators.min(0)]],
-      numero_cuotas: [null, [Validators.required, Validators.min(1)]],
+      tasa_interes: [null, [Validators.required, Validators.min(0), Validators.max(100)]],
+      cok: [null, [Validators.required, Validators.min(0)]], 
+      
+      
+      numero_cuotas: [null, [
+          Validators.required, 
+          Validators.min(60), 
+          Validators.max(300)
+      ]],
+      
       peridiocidad_tasa: ['Mensual', Validators.required],
       tipo_capitalizacion: ['Nulo', Validators.required],
       tipo_gracia: ['Ninguno', Validators.required],
+      
+      
       duracion_gracia_meses: [0, [Validators.required, Validators.min(0)]],
     });
+
+    this.form.get('tipo_gracia')?.valueChanges.subscribe(valor => {
+      const controlDuracion = this.form.get('duracion_gracia_meses');
+
+      if (valor === 'Ninguno') {
+        
+        controlDuracion?.setValue(0);
+        controlDuracion?.setValidators([Validators.required, Validators.min(0), Validators.max(0)]);
+        controlDuracion?.disable(); 
+      } else {
+        
+        controlDuracion?.enable();
+        controlDuracion?.setValidators([Validators.required, Validators.min(6)]);
+      }
+      controlDuracion?.updateValueAndValidity();
+    });
+
 
     this.route.paramMap.subscribe(params => {
       if (params.has('id')) { 
