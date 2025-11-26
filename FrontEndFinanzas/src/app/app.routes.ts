@@ -13,6 +13,11 @@ import { CreditoDetalleComponent } from './components/creditomivivienda/creditod
 import { seguridadGuard } from './guard/seguridad.guard'; 
 import { Cronogramapagos } from './components/cronogramapagos/cronogramapagos'; 
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { Reportes } from './components/reportes/reportes';
+import { AnalisisRentabilidad } from './components/reportes/analisis-rentabilidad/analisis-rentabilidad';
+import { CreditoPorUsuarioConPeriodoGracia } from './components/reportes/credito-por-usuario-con-periodo-gracia/credito-por-usuario-con-periodo-gracia';
+import { PropiedadXUser } from './components/reportes/propiedad-xuser/propiedad-xuser';
+import { PrecioCorrespondientePorPropiedadXUsuario1 } from './components/reportes/precio-correspondiente-por-propiedad-xusuario/precio-correspondiente-por-propiedad-xusuario';
 export const routes: Routes = [
     // --- Rutas Públicas ---
     { path: '', redirectTo: '/landing', pathMatch: 'full' },
@@ -81,6 +86,26 @@ export const routes: Routes = [
         component: CrearpropiedadComponent, 
         canActivate: [seguridadGuard]
     },
+    {
+        path: 'reportes', 
+        component: Reportes,
+        children:[
+            {
+                path:'analisisrentabilidad', component:AnalisisRentabilidad,
+            },
+            {
+                path:'creditoPorusuarioconPeriodogracia', component:CreditoPorUsuarioConPeriodoGracia,
+            },
+            {
+                path:'preciocorrespondienteporpropiedadxusuario', component:PrecioCorrespondientePorPropiedadXUsuario1,
+            },
+            {
+                path:'propiedadxuser', component:PropiedadXUser,
+            }
+           
+        ],
+        canActivate: [seguridadGuard]
+    }
     
     
 ];
