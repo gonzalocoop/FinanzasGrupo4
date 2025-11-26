@@ -3,13 +3,17 @@
     <button mat-button [routerLink]="['/homes']" style="color: rgb(0, 0, 0)">
       <mat-icon>home</mat-icon>Home
     </button>
-    
+    <button mat-button [routerLink]="['/reportes']" style="color: rgb(0, 0, 0)">
+      <mat-icon>Reportes</mat-icon>Reportes
+    </button>
     <button mat-button *ngIf="isAdmin()" [matMenuTriggerFor]="adminMenu" style="color: rgb(0, 0, 0)">
       <mat-icon>admin_panel_settings</mat-icon>
       Administrar
     </button>
+    
     <mat-menu #adminMenu="matMenu">
       <button mat-menu-item routerLink="/admin/propiedades">Gestionar Propiedades</button>
+      
       </mat-menu>
     </div>
   <div class="right-menu">

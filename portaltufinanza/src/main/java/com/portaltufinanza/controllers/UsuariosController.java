@@ -66,7 +66,7 @@ public class UsuariosController {
         return dto;
     }
 
-    @GetMapping("/list/PropiedadesFinanciadasPorUsuario")
+    @GetMapping("/list/propiedadesfinanciadasporusuario")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'USUARIO')")
     public List<QueryPropiedadxUserDTO> PropiedadesPorUsuario(@RequestParam Integer id_usuario) {
         List<QueryPropiedadxUserDTO> dtoLista = new ArrayList<>();
@@ -106,7 +106,7 @@ public class UsuariosController {
         return dtoLista;
     }
 
-    @GetMapping("/list/PrecioCorrespondientePorPropiedadPorUsuario")
+    @GetMapping("/list/preciocorrespondienteporpropiedadporusuario")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'USUARIO')")
     public List<QueryPrecioCorrespondientePorPropiedadyUsuario> PrecioCorrespondientePorPropiedadPorUsuario(@RequestParam Integer id_usuario) {
         List<QueryPrecioCorrespondientePorPropiedadyUsuario> dtoLista = new ArrayList<>();
@@ -127,7 +127,7 @@ public class UsuariosController {
         return dtoLista;
     }
 
-    @GetMapping("/list/AnalisisdeRentabilidaddeCreditoPorUsuario")
+    @GetMapping("/list/analisisderentabilidaddecreditoporusuario")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'USUARIO')")
     public List<QueryAnalisisRentabilidad> AnalisisdeRentabilidadPorCreditodeUsuario(@RequestParam Integer id_usuario) {
         List<QueryAnalisisRentabilidad> dtoLista = new ArrayList<>();
@@ -149,7 +149,7 @@ public class UsuariosController {
         return dtoLista;
     }
 
-    @GetMapping("/list/CreditosPorUsuarioConPeriododeGracia")
+    @GetMapping("/list/creditosporusuarioconperiododegracia")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'USUARIO')")
     public List<QueryCreditosPorUsuarioConPeriododeGracia> CreditosPorUsuarioConPeriododeGracia(@RequestParam Integer id_usuario) {
         List<QueryCreditosPorUsuarioConPeriododeGracia> dtoLista = new ArrayList<>();
