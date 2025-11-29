@@ -61,7 +61,7 @@ export class Resumenfiancierousuario implements OnInit{
 
   ngOnInit(): void {
     console.log("Valor actual del ID:", this.datos.id_usuario);
-    const idUrl = +this.route.snapshot.paramMap.get('idUsuario')!; // Aquí obtienes el ID real del login
+    const idUrl = +this.route.snapshot.paramMap.get('id')!; // Aquí obtienes el ID real del login
     this.cargarDatos(idUrl);
   }
 

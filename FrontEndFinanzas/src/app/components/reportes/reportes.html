@@ -1,4 +1,4 @@
-<div class="toolbar-container">
+<div class="toolbar-container" *ngIf="isLogged">
     <mat-toolbar class="custom-toolbar">
       <div>
         <button mat-button [matMenuTriggerFor]="menuG4" style="color: white;">Reportes</button> 
@@ -25,7 +25,7 @@
       </button>
   </ng-container>
 
-  <ng-container *ngIf="isStudent()">
+  <ng-container *ngIf="isStudent()" && idUsuarioActual>
       <button mat-menu-item [routerLink]="['/reportes/resumenfinancierousuario', idUsuarioActual]">
           <mat-icon>home</mat-icon> Mi Resumen Financiero
       </button>
