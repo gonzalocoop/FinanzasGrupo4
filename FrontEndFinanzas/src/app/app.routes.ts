@@ -18,6 +18,7 @@ import { AnalisisRentabilidad } from './components/reportes/analisis-rentabilida
 import { CreditoPorUsuarioConPeriodoGracia } from './components/reportes/credito-por-usuario-con-periodo-gracia/credito-por-usuario-con-periodo-gracia';
 import { PropiedadXUser } from './components/reportes/propiedad-xuser/propiedad-xuser';
 import { PrecioCorrespondientePorPropiedadXUsuario1 } from './components/reportes/precio-correspondiente-por-propiedad-xusuario/precio-correspondiente-por-propiedad-xusuario';
+import { Resumenfiancierousuario } from './components/reportes/resumenfiancierousuario/resumenfiancierousuario';
 export const routes: Routes = [
     // --- Rutas Públicas ---
     { path: '', redirectTo: '/landing', pathMatch: 'full' },
@@ -101,6 +102,9 @@ export const routes: Routes = [
             },
             {
                 path:'propiedadxuser', component:PropiedadXUser,
+            },
+            {
+                path:'resumenfinancierousuario/:id', component:Resumenfiancierousuario,
             }
            
         ],
