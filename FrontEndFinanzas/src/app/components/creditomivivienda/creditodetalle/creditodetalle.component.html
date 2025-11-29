@@ -29,8 +29,12 @@
           <span class="info-value">- {{ credito.cuota_inicial | number:'1.2-2' }}</span>
         </div>
         <div class="info-item big-item total-item">
-          <span class="info-label">Monto del Préstamo</span>
+          <span class="info-label">Monto del Préstamo (Sin tener en cuenta Bono)</span>
           <span class="info-value">{{ credito.saldo_inicial | number:'1.2-2' }}</span>
+        </div>
+        <div class="info-item big-item total-item">
+          <span class="info-label">Costos extras (notariales, transacción y registro)</span>
+          <span class="info-value">{{ credito.preciocorrespondiente.costos_notariales + credito.preciocorrespondiente.costos_transaccion +  credito.preciocorrespondiente.registros_publicos| number:'1.2-2' }}</span>
         </div>
       </div>
     </div>
@@ -53,7 +57,7 @@
           <span class="info-value">{{ (credito.tem_requerido * 100) | number:'1.4-4' }}%</span>
         </div>
         <div class="info-item">
-          <span class="info-label">Plazo (Cuotas)</span>
+          <span class="info-label">Plazo (# Cuotas sin tener en cuenta gracia)</span>
           <span class="info-value">{{ credito.numero_cuotas }} meses</span>
         </div>
         <div class="info-item">
@@ -74,7 +78,7 @@
       <div class="info-grid">
         <div class="info-item">
           <span class="info-label">COK (Tasa de Descuento)</span>
-          <span class="info-value">{{ (credito.cok * 100) | number:'1.2-2' }}%</span>
+          <span class="info-value">{{ (credito.cok) | number:'1.2-2' }}%</span>
         </div>
         <div class="info-item">
           <span class="info-label">VAN (Valor Actual Neto)</span>
