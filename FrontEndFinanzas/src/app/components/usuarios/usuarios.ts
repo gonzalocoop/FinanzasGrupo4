@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './usuarios.css',
 })
 export class Usuarios {
+  id_usuario(id_usuario: any) {
+    throw new Error('Method not implemented.');
+  }
 
 }

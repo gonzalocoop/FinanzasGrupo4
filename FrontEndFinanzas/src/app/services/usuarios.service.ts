@@ -8,6 +8,7 @@ import { QueryAnalisisRentabilidad } from '../models/QueryAnalisisRentabilidad';
 import { QueryCreditosPorUsuarioConPeriododeGracia } from '../models/QueryCreditosPorUsuarioConPeriododeGracia';
 import { QueryPrecioCorrespondientePorPropiedadyUsuario } from '../models/QueryPrecioCorrespondientePorPropiedadyUsuario';
 import { QueryPropiedadxUserDTO } from '../models/QueryPropiedadxUserDTO';
+import { ResumenFinancieroUsuarioDTO } from '../models/ResumenFinancieroUsuarioDTO';
 
 const base_url = environment.base;
 
@@ -35,8 +36,8 @@ export class UsuariosService {
     return this.http.put(this.url, u);
   }
 
-  analisisderentabilidadporcreditodeusuario(id_usuario: number): Observable<QueryAnalisisRentabilidad[]> {
-    return this.http.get<QueryAnalisisRentabilidad[]>(`${this.url}/list/analisisderentabilidaddecreditoporusuario?id_usuario=${id_usuario}`);
+  analisisderentabilidadporcreditodeusuario(): Observable<QueryAnalisisRentabilidad[]> {
+    return this.http.get<QueryAnalisisRentabilidad[]>(`${this.url}/list/analisisderentabilidaddecreditoporusuario`);
   }
 
   creditosporusuarioconperiododegracia(id_usuario: number): Observable<QueryCreditosPorUsuarioConPeriododeGracia[]> {
@@ -50,4 +51,10 @@ export class UsuariosService {
   propiedadesfinanciadasporusuario(id_usuario: number): Observable<QueryPropiedadxUserDTO[]> {
     return this.http.get<QueryPropiedadxUserDTO[]>(`${this.url}/list/propiedadesfinanciadasporusuario?id_usuario=${id_usuario}`);
   }
+
+  // Angular Service simplificado
+resumenfinancieroUsuario(id_usuario: number): Observable<ResumenFinancieroUsuarioDTO[]> {
+    return this.http.get<ResumenFinancieroUsuarioDTO[]>(`${this.url}/list/resumenfinancierousuario/${id_usuario}`);
+}
+
 }

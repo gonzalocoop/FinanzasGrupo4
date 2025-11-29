@@ -55,12 +55,17 @@ public class UsuariosServiceImplement implements IUsuariosService {
     }
 
     @Override
-    public List<String[]> AnalisisdeRentabilidadPorCreditodeUsuario(Integer id_usuario) {
-        return uR.AnalisisdeRentabilidadPorCreditodeUsuario(id_usuario);
+    public List<String[]> AnalisisdeRentabilidadPorCreditodeUsuario() {
+        return uR.AnalisisdeRentabilidadPorCreditodeUsuario();
     }
 
     @Override
     public List<String[]> CreditosPorUsuarioConPeriododeGracia(Integer id_usuario) {
         return uR.CreditosPorUsuarioConPeriododeGracia(id_usuario);
+    }
+
+    @Override
+    public List<String[]> ObtenerResumenFinancieroUsuario(Integer id_usuario) {
+        return uR.ObtenerResumenFinancieroUsuario(id_usuario);
     }
 }

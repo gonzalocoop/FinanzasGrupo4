@@ -54,9 +54,8 @@ public interface IUsuariosRepository extends JpaRepository<Usuarios,Integer> {
             "    c.numero_cuotas\n" +
             "FROM credito_mi_vivienda c\n" +
             "JOIN usuarios u ON u.id_usuario = c.id_usuario\n" +
-            "JOIN propiedad p ON c.id_propiedad = p.id_propiedad\n" +
-            "WHERE u.id_usuario = :id_usuario",nativeQuery = true)
-    public List<String[]> AnalisisdeRentabilidadPorCreditodeUsuario(@Param("id_usuario")Integer id_usuario);
+            "JOIN propiedad p ON c.id_propiedad = p.id_propiedad\n",nativeQuery = true)
+    public List<String[]> AnalisisdeRentabilidadPorCreditodeUsuario();
 
 
 
@@ -65,4 +64,37 @@ public interface IUsuariosRepository extends JpaRepository<Usuarios,Integer> {
             "WHERE id_usuario = :id_usuario\n" +
             "  AND tipo_gracia <> 'Ninguno'",nativeQuery = true)
     public List<String[]> CreditosPorUsuarioConPeriododeGracia(@Param("id_usuario")Integer id_usuario);
+
+    @Query(value = "SELECT \n" +
+            "u.id_usuario,\n"+
+            "          u.nombre_cliente,                \n" +
+            "            p.direccion,                    \n" +
+            "            p.precio_propiedad,                \n" +
+            "            m.nombre_moneda,                \n" +
+            "            c.saldo_inicial as monto_prestamo,                \n" +
+            "            c.cuota_inicial,              \n" +
+            "            c.tasa_interes,               \n" +
+            "            c.numero_cuotas,             \n" +
+            "            c.fecha_inicio,                \n" +
+            "            c.tir,                         \n" +
+            "            c.cok,                        \n" +
+            "            c.van,                       \n" +
+            "            c.tcea,\n" +
+            "\t\t\tCASE\n" +
+            "\t\t\t\tWHEN c.tir > c.cok THEN 'Rentable'\n" +
+            "\t\t\t\telse 'No rentable'\n" +
+            "\t\t\tend as estado_credito,\n" +
+            "\t\t\t(SELECT COALESCE(SUM(cp.interes_cuota), 0) FROM cronograma_pagos cp WHERE cp.id_credito = c.id_credito) AS total_intereses,\n" +
+            "            (SELECT cp.cuota_fija\n" +
+            "             FROM cronograma_pagos cp\n" +
+            "             WHERE cp.id_credito = c.id_credito\n" +
+            "             AND cp.numero_cuota = (COALESCE(c.duracion_gracia_meses, 0) + 1)\n" +
+            "             LIMIT 1) AS cuota_mensual_representativa\n" +
+            "        FROM credito_mi_vivienda c           \n" +
+            "        JOIN usuarios u ON u.id_usuario = c.id_usuario \n" +
+            "        JOIN propiedad p ON c.id_propiedad = p.id_propiedad \n" +
+            "        JOIN precio_correspondiente pc ON c.id_precio_correspondiente = pc.id_precio_correspondiente \n" +
+            "        JOIN moneda m ON pc.id_moneda = m.id_moneda"+
+            "\t\tWHERE u.id_usuario = :id_usuario\n", nativeQuery = true)
+    public List<String[]> ObtenerResumenFinancieroUsuario(@Param("id_usuario") Integer id_usuario);
 }

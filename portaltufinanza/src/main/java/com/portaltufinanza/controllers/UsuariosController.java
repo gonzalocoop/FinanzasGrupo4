@@ -129,9 +129,9 @@ public class UsuariosController {
 
     @GetMapping("/list/analisisderentabilidaddecreditoporusuario")
     @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'USUARIO')")
-    public List<QueryAnalisisRentabilidad> AnalisisdeRentabilidadPorCreditodeUsuario(@RequestParam Integer id_usuario) {
+    public List<QueryAnalisisRentabilidad> AnalisisdeRentabilidadPorCreditodeUsuario() {
         List<QueryAnalisisRentabilidad> dtoLista = new ArrayList<>();
-        List<String[]> filaLista = uS.AnalisisdeRentabilidadPorCreditodeUsuario(id_usuario);
+        List<String[]> filaLista = uS.AnalisisdeRentabilidadPorCreditodeUsuario();
         for (String[] columna : filaLista) {
             QueryAnalisisRentabilidad dto = new QueryAnalisisRentabilidad();
             dto.setNombre_cliente(columna[0]);
@@ -162,6 +162,40 @@ public class UsuariosController {
             dto.setNumero_cuotas(Integer.parseInt(columna[3]));
             dtoLista.add(dto);
         }
+        return dtoLista;
+    }
+
+
+    @GetMapping("/list/resumenfinancierousuario/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR', 'USUARIO')") // O los roles que uses
+    public List<ResumenFinancieroUsuarioDTO> ResumenFinancieroUsuario(@PathVariable("id") Integer id_usuario) {
+
+        List<ResumenFinancieroUsuarioDTO> dtoLista = new ArrayList<>();
+        List<String[]> filaLista = uS.ObtenerResumenFinancieroUsuario(id_usuario);
+
+        for (String[] columna : filaLista) {
+            ResumenFinancieroUsuarioDTO dto = new ResumenFinancieroUsuarioDTO();
+
+            dto.setId_usuario(Integer.parseInt(columna[0]));
+            dto.setNombreCliente(columna[1]);
+            dto.setDireccion(columna[2]);
+            dto.setPrecioPropiedad(columna[3] != null ? new BigDecimal(columna[3]) : BigDecimal.ZERO);
+            dto.setSimboloMoneda(columna[4]);
+            dto.setMontoPrestamo(columna[5] != null ? new BigDecimal(columna[5]) : BigDecimal.ZERO);
+            dto.setCuotaInicial(columna[6] != null ? new BigDecimal(columna[6]) : BigDecimal.ZERO);
+            dto.setTasaInteres(columna[7] != null ? new BigDecimal(columna[7]) : BigDecimal.ZERO);
+            dto.setNumeroCuotas(columna[8] != null ? Integer.parseInt(columna[8]) : 0);
+            dto.setFechaInicio(columna[9]);
+            dto.setTir(columna[10] != null ? new BigDecimal(columna[10]) : BigDecimal.ZERO);
+            dto.setCok(columna[11] != null ? new BigDecimal(columna[11]) : BigDecimal.ZERO);
+            dto.setVan(columna[12] != null ? new BigDecimal(columna[12]) : BigDecimal.ZERO);
+            dto.setTcea(columna[13] != null ? new BigDecimal(columna[13]) : BigDecimal.ZERO);
+            dto.setEstadoCredito(columna[14]);
+            dto.setTotalintereses(columna[15] != null ? new BigDecimal(columna[15]) : BigDecimal.ZERO);
+            dto.setPrimeracuota(columna[16] != null ? new BigDecimal(columna[16]) : BigDecimal.ZERO);
+            dtoLista.add(dto);
+        }
+
         return dtoLista;
     }
 }
