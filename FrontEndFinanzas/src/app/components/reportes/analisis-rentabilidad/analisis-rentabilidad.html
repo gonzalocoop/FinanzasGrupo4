@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>Reporte de Análisis de la Rentabilidad</h1>
+
+  <div class="form-group">
+    <label for="idusuario">ID del usuario:</label>
+    
+    <input 
+      type="number" 
+      id="idusuario" 
+      [(ngModel)]="id_usuario" 
+      (input)="limpiarBusqueda()"
+      class="form-control" 
+      placeholder="Ingrese ID del usuario">
+  </div>
+
+  <button class="btn btn-primary mt-3" (click)="cargarAnalisis()">Buscar</button>
+
+  <div *ngIf="analisis.length > 0" class="table-responsive mt-4">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre del Cliente</th>
+          <th>ID Crédito</th>
+          <th>TIR</th>
+          <th>COK</th>
+          <th>Margen Rentabilidad</th>
+          <th>Estado</th>
+          <th>Dirección</th>
+          <th>VAN</th>
+          <th>Tasa Interés</th>
+          <th>Nro. Cuotas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rec of analisis">
+          <td>{{ rec.nombre_cliente }}</td>
+          <td>{{ rec.id_credito }}</td>
+          <td>{{ rec.tir }}</td>
+          <td>{{ rec.cok }}</td>
+          <td>{{ rec.margen_rentabilidad }}</td>
+          <td>{{ rec.estado_credito }}</td>
+          <td>{{ rec.direccion }}</td>
+          <td>{{ rec.van }}</td>
+          <td>{{ rec.tasa_interes }}</td>
+          <td>{{ rec.numero_cuotas}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p *ngIf="analisis.length === 0 && haRealizadoBusqueda" class="no-results-message">
+    No se encontraron resultados para la búsqueda.
+  </p>
+
+</div>

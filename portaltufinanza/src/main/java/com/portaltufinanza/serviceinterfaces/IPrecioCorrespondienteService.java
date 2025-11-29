@@ -13,6 +13,6 @@ public interface IPrecioCorrespondienteService {
     public void update(PrecioCorrespondiente precio);
     public PrecioCorrespondiente listId(int id);
     public List<PrecioCorrespondiente> precioSegunDireccionPropiedad(String direccion);
-    public void registrarPrecioCorrespondiente(BigDecimal costos_notariales, BigDecimal registros_publicos, BigDecimal costos_transaccion, int id_propiedad, int id_moneda);
+    public PrecioCorrespondiente registrarPrecioCorrespondiente(BigDecimal costos_notariales, BigDecimal registros_publicos, BigDecimal costos_transaccion, int id_propiedad, int id_moneda);
 
 }

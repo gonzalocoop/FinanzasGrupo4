@@ -22,6 +22,9 @@ public interface IPrecioCorrespondienteRepository extends JpaRepository<PrecioCo
     )
     public List<PrecioCorrespondiente> precioSegunDireccionPropiedad(@Param("direccion") String direccion);
 
+    @Query("SELECT pc FROM PrecioCorrespondiente pc WHERE pc.propiedad.id_propiedad = :idPropiedad ORDER BY pc.id_precio_correspondiente DESC")
+    public List<PrecioCorrespondiente> buscarUltimoPorPropiedad(@Param("idPropiedad") Integer idPropiedad);
+
 
     @Transactional
     @Modifying

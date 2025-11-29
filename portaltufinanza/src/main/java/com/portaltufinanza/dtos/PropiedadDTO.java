@@ -9,6 +9,7 @@ public class PropiedadDTO {
     private String tipo_propiedad;
     private String direccion;
     private BigDecimal precio_propiedad;
+    private String url_imagen;
 
     public int getId_propiedad() {
         return id_propiedad;
@@ -40,5 +41,13 @@ public class PropiedadDTO {
 
     public void setPrecio_propiedad(BigDecimal precio_propiedad) {
         this.precio_propiedad = precio_propiedad;
+    }
+
+    public String getUrl_imagen() {
+        return url_imagen;
+    }
+
+    public void setUrl_imagen(String url_imagen) {
+        this.url_imagen = url_imagen;
     }
 }
